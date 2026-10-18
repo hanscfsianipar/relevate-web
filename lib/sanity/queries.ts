@@ -1,4 +1,4 @@
-import { client } from './client'
+import { fetchList, fetchOne } from './client'
 
 // ─── SEO ──────────────────────────────────────────────────────────────────────
 
@@ -35,7 +35,7 @@ export type HomePageData = {
 }
 
 export async function getHomePage(): Promise<HomePageData | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "homePage"][0] { id, en, seo { metaTitleId, metaTitleEn, metaDescId, metaDescEn, ogImage { asset->{ url } }, noIndex } }`,
     {},
     { next: { revalidate: 60 } }
@@ -65,7 +65,7 @@ export type InsightListItem = {
 export type InsightDetail = InsightListItem & { seo?: SeoData }
 
 export async function getAllInsights(): Promise<InsightListItem[]> {
-  return client.fetch(
+  return fetchList(
     `*[_type == "insight"] | order(date desc) {
       "slug": slug.current,
       shortId,
@@ -82,7 +82,7 @@ export async function getAllInsights(): Promise<InsightListItem[]> {
 }
 
 export async function getInsightBySlug(slug: string): Promise<InsightDetail | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "insight" && slug.current == $slug][0] {
       "slug": slug.current,
       shortId,
@@ -100,7 +100,7 @@ export async function getInsightBySlug(slug: string): Promise<InsightDetail | nu
 }
 
 export async function getAllInsightSlugs(): Promise<string[]> {
-  const results = await client.fetch<{ slug: string; shortId?: string }[]>(
+  const results = await fetchList<{ slug: string; shortId?: string }>(
     `*[_type == "insight"] { "slug": slug.current, shortId }`,
     {},
     { next: { revalidate: 3600 } }
@@ -109,7 +109,7 @@ export async function getAllInsightSlugs(): Promise<string[]> {
 }
 
 export async function getInsightByShortId(shortId: string): Promise<{ shortId: string; slug: string } | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "insight" && shortId == $shortId][0] { shortId, "slug": slug.current }`,
     { shortId },
     { next: { revalidate: 60 } }
@@ -147,7 +147,7 @@ export type CaseStudyDetail = CaseStudyListItem & {
 }
 
 export async function getAllCaseStudies(): Promise<CaseStudyListItem[]> {
-  return client.fetch(
+  return fetchList(
     `*[_type == "caseStudy"] | order(_createdAt desc) {
       "slug": slug.current,
       shortId,
@@ -163,7 +163,7 @@ export async function getAllCaseStudies(): Promise<CaseStudyListItem[]> {
 }
 
 export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyDetail | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "caseStudy" && slug.current == $slug][0] {
       "slug": slug.current,
       shortId,
@@ -182,7 +182,7 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyDetail 
 }
 
 export async function getAllCaseStudySlugs(): Promise<string[]> {
-  const results = await client.fetch<{ slug: string; shortId?: string }[]>(
+  const results = await fetchList<{ slug: string; shortId?: string }>(
     `*[_type == "caseStudy"] { "slug": slug.current, shortId }`,
     {},
     { next: { revalidate: 3600 } }
@@ -191,7 +191,7 @@ export async function getAllCaseStudySlugs(): Promise<string[]> {
 }
 
 export async function getCaseStudyByShortId(shortId: string): Promise<{ shortId: string; slug: string } | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "caseStudy" && shortId == $shortId][0] { shortId, "slug": slug.current }`,
     { shortId },
     { next: { revalidate: 60 } }
@@ -236,7 +236,7 @@ export type ExperienceDetail = ExperienceListItem & {
 }
 
 export async function getAllExperiences(): Promise<ExperienceListItem[]> {
-  return client.fetch(
+  return fetchList(
     `*[_type == "experience"] | order(periodStart desc) {
       "slug": slug.current,
       shortId,
@@ -257,7 +257,7 @@ export async function getAllExperiences(): Promise<ExperienceListItem[]> {
 }
 
 export async function getExperienceBySlug(slug: string): Promise<ExperienceDetail | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "experience" && slug.current == $slug][0] {
       "slug": slug.current,
       shortId,
@@ -283,7 +283,7 @@ export async function getExperienceBySlug(slug: string): Promise<ExperienceDetai
 }
 
 export async function getAllExperienceSlugs(): Promise<string[]> {
-  const results = await client.fetch<{ slug: string; shortId?: string }[]>(
+  const results = await fetchList<{ slug: string; shortId?: string }>(
     `*[_type == "experience"] { "slug": slug.current, shortId }`,
     {},
     { next: { revalidate: 3600 } }
@@ -292,7 +292,7 @@ export async function getAllExperienceSlugs(): Promise<string[]> {
 }
 
 export async function getExperienceByShortId(shortId: string): Promise<{ shortId: string; slug: string } | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "experience" && shortId == $shortId][0] { shortId, "slug": slug.current }`,
     { shortId },
     { next: { revalidate: 60 } }
@@ -320,7 +320,7 @@ export type SkillCategory = { category: string; tagline: string; tags: SkillTag[
 export type AboutPageData = { id: AboutLocale; en: AboutLocale; skills: SkillCategory[]; seo?: SeoData }
 
 export async function getAboutPage(): Promise<AboutPageData | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "aboutPage"][0] { id, en, skills, seo { metaTitleId, metaTitleEn, metaDescId, metaDescEn, ogImage { asset->{ url } }, noIndex } }`,
     {},
     { next: { revalidate: 60 } }
@@ -339,7 +339,7 @@ export type ServicesLocale = {
 export type ServicesPageData = { id: ServicesLocale; en: ServicesLocale; seo?: SeoData }
 
 export async function getServicesPage(): Promise<ServicesPageData | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "servicesPage"][0] { id, en, seo { metaTitleId, metaTitleEn, metaDescId, metaDescEn, ogImage { asset->{ url } }, noIndex } }`,
     {},
     { next: { revalidate: 60 } }
@@ -378,7 +378,7 @@ export type ServicePageData = {
 }
 
 export async function getServicePageBySlug(slug: string): Promise<ServicePageData | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "servicePage" && slug.current == $slug][0] {
       "slug": slug.current,
       title,
@@ -422,7 +422,7 @@ export type SpeakingPageData = {
 }
 
 export async function getSpeakingPage(): Promise<SpeakingPageData | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "speakingPage"][0] { id, en, events, seo { metaTitleId, metaTitleEn, metaDescId, metaDescEn, ogImage { asset->{ url } }, noIndex } }`,
     {},
     { next: { revalidate: 60 } }
@@ -430,7 +430,7 @@ export async function getSpeakingPage(): Promise<SpeakingPageData | null> {
 }
 
 export async function getAllServicePages(): Promise<ServicePageData[]> {
-  return client.fetch(
+  return fetchList(
     `*[_type == "servicePage"] | order(_createdAt asc) {
       "slug": slug.current,
       title,
@@ -460,7 +460,7 @@ export type ContactPageData = {
 }
 
 export async function getContactPage(): Promise<ContactPageData | null> {
-  return client.fetch(
+  return fetchOne(
     `*[_type == "contactPage"][0] { id, en, email, linkedinUrl, seo { metaTitleId, metaTitleEn, metaDescId, metaDescEn, ogImage { asset->{ url } }, noIndex } }`,
     {},
     { next: { revalidate: 60 } }

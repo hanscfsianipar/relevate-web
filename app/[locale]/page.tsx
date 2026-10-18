@@ -7,6 +7,7 @@ import { ExpertiseSection } from "@/components/sections/expertise-section";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { CompanyLogoStrip } from "@/components/sections/company-logo-strip";
 import { getHomePage } from "@/lib/sanity/queries";
+import { siteConfig } from "@/lib/site-config";
 
 export const revalidate = 3600
 
@@ -26,8 +27,8 @@ export async function generateMetadata({
   const c = sanity ? (locale === 'en' ? sanity.en : sanity.id) : null;
   const isEn = locale === 'en';
   const title = isEn
-    ? (sanity?.seo?.metaTitleEn || `Hans Christian Ferdinand - Marketing Analyst & SEO`)
-    : (sanity?.seo?.metaTitleId || `Hans Christian Ferdinand - Marketing Analyst & SEO`);
+    ? (sanity?.seo?.metaTitleEn || `${siteConfig.brand} - ${siteConfig.tagline.en}`)
+    : (sanity?.seo?.metaTitleId || `${siteConfig.brand} - ${siteConfig.tagline.id}`);
   const description = isEn
     ? (sanity?.seo?.metaDescEn || c?.heroSubheadline || t("heroSubheadline"))
     : (sanity?.seo?.metaDescId || c?.heroSubheadline || t("heroSubheadline"));

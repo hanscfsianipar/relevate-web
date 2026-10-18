@@ -1,6 +1,13 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
+
+const icons = {
+  linkedin: Linkedin,
+  instagram: Instagram,
+  x: Twitter,
+};
 
 export function SiteFooter() {
   const t = useTranslations();
@@ -16,7 +23,8 @@ export function SiteFooter() {
               href="/"
               className="font-bricolage text-xl font-semibold tracking-tight"
             >
-              Hans<span className="text-accent">.</span>
+              {siteConfig.brand}
+              <span className="text-accent">{siteConfig.wordmarkSuffix}</span>
             </Link>
             <p className="mt-2 text-sm text-muted-foreground max-w-xs">
               {t("footer.tagline")}
@@ -58,29 +66,30 @@ export function SiteFooter() {
             >
               {t("nav.contact")}
             </Link>
-            <div className="flex items-center gap-3 mt-4">
-              {[
-                { href: "https://www.linkedin.com/in/hanscfs/", icon: Linkedin, label: "LinkedIn" },
-                { href: "https://www.instagram.com/hanscfs/", icon: Instagram, label: "Instagram" },
-                { href: "https://x.com/hanscfs", icon: Twitter, label: "X" },
-              ].map(({ href, icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
+            {siteConfig.socials.length > 0 && (
+              <div className="flex items-center gap-3 mt-4">
+                {siteConfig.socials.map(({ href, label, icon }) => {
+                  const Icon = icons[icon];
+                  return (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
 
         <div className="mt-10 pt-6 border-t border-border/40 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-muted-foreground">
-          <p>© {year} Hans. {t("footer.rights")}</p>
+          <p>© {year} {siteConfig.brand}. {t("footer.rights")}</p>
           <p>Built with Next.js & Sanity</p>
         </div>
       </div>

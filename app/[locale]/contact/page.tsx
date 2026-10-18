@@ -20,7 +20,7 @@ const copy = {
       "Konsultasi 1-on-1",
       "Proyek custom lainnya",
     ],
-    responseNote: "Saya biasanya merespons dalam 24 jam.",
+    responseNote: "Kami biasanya merespons dalam 24 jam.",
   },
   en: {
     discussionHeading: "What we can discuss",
@@ -79,7 +79,7 @@ export default async function ContactPage({
     ? (locale === "en" ? sanityData.en : sanityData.id)
     : (locale === "en" ? copy.en : copy.id);
 
-  const linkedinUrl = sanityData?.linkedinUrl ?? "https://linkedin.com/in/hans";
+  const linkedinUrl = sanityData?.linkedinUrl ?? "";
 
   return (
     <section className="py-20 md:py-28">

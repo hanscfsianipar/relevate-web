@@ -10,12 +10,12 @@
     "menu": "Menu"
   },
   "home": {
-    "heroTagline": "Marketing Analyst & SEO",
-    "heroHeadline": "I Find What Actually Moves the Needle.",
-    "heroSubheadline": "Most marketing problems are measurement problems. I help you identify what's actually driving growth, then build systems around it.",
-    "ctaPrimary": "View My Work",
-    "ctaSecondary": "Work With Me",
-    "servicesTitle": "What I Do",
+    "heroTagline": "Marketing Analytics & SEO",
+    "heroHeadline": "We Find What Actually Moves the Needle.",
+    "heroSubheadline": "Most marketing problems are measurement problems. We help you separate signal from noise, then build systems around it.",
+    "ctaPrimary": "View Our Work",
+    "ctaSecondary": "Work With Us",
+    "servicesTitle": "What We Do",
     "workTitle": "Selected Work",
     "expertiseTitle": "Expertise & Tools",
     "testimonialsTitle": "What Clients Say",
@@ -24,47 +24,47 @@
     "previouslyAt": "Across industries"
   },
   "about": {
-    "title": "Hans Christian Ferdinand - About",
-    "description": "My career journey and work philosophy",
-    "metaDescription": "Hans Christian Ferdinand - from SEO specialist to GM of Marketing Analytics at Vidio. Data-driven growth, intent-based SEO strategy."
+    "title": "Relevate - About",
+    "description": "How we work and what we stand for",
+    "metaDescription": "Relevate, a marketing analytics and SEO team. We start with measurement done right, then build strategy on top of it."
   },
   "experience": {
-    "title": "Experience | Hans",
-    "description": "Every company I've helped, and how I did it.",
-    "metaDescription": "10+ years SEO & analytics experience - Vidio (GM of SEO), ShopBack, Lamudi, Ruparupa. Technical SEO, content strategy, marketing analytics.",
+    "title": "Relevate Team Experience",
+    "description": "Experience that shaped how we work.",
+    "metaDescription": "Relevate team experience across SEO and marketing analytics, from technical execution to decision making.",
     "present": "Present",
-    "whatIDid": "What I Did",
+    "whatIDid": "What We Did",
     "achievements": "Key Achievements",
     "tools": "Tools & Approach",
     "lessons": "Lessons Learned",
     "relatedWork": "Related Case Studies"
   },
   "services": {
-    "title": "Services | Hans",
-    "description": "How I can help your business.",
-    "metaDescription": "SEO consulting with 10+ years experience at Vidio, ShopBack, Lamudi - technical SEO, marketing analytics audit, GA4 setup, attribution modeling for measurable growth.",
+    "title": "Services | Relevate",
+    "description": "How we can help your business.",
+    "metaDescription": "SEO, marketing analytics, and performance measurement services for measurable growth.",
     "cta": "Start a Conversation",
     "faqs": "Frequently Asked Questions"
   },
   "caseStudies": {
-    "title": "Case Studies | Hans",
+    "title": "Case Studies | Relevate",
     "description": "Real results from real engagements.",
-    "metaDescription": "Vidio AI Olympics pipeline (Top 5 global), VideoObject markup pilot (3x impressions), Bareksa traffic recovery - real SEO & analytics case studies by Hans Christian Ferdinand.",
+    "metaDescription": "SEO and marketing analytics case studies from our work.",
     "challenge": "The Challenge",
     "approach": "The Approach",
     "results": "The Results"
   },
   "insights": {
-    "title": "Insights | Hans",
+    "title": "Insights | Relevate",
     "description": "Writing on SEO, analytics, and digital strategy.",
-    "metaDescription": "Articles on SEO, marketing analytics, and digital strategy by Hans Christian Ferdinand. Data-driven insights from 10+ years in the industry.",
+    "metaDescription": "Articles on SEO, marketing analytics, and digital strategy from the Relevate team.",
     "readMore": "Read More",
     "minRead": "min read"
   },
   "contact": {
-    "title": "Contact | Hans",
-    "description": "Tell me about your project. I'll respond within 24 hours.",
-    "metaDescription": "SEO consultant, marketing analytics, growth strategy - book a consultation with Hans Christian Ferdinand. I respond within 24 hours.",
+    "title": "Contact | Relevate",
+    "description": "Tell us about your project. We respond within 24 hours.",
+    "metaDescription": "SEO and marketing analytics consulting. Send your brief, we respond within 24 hours.",
     "namePlaceholder": "Your Name",
     "emailPlaceholder": "Your Email",
     "companyPlaceholder": "Company Name",
@@ -73,7 +73,7 @@
     "budgetLabel": "Budget",
     "submit": "Send Message",
     "sending": "Sending...",
-    "successMessage": "Thank you! I'll be in touch shortly.",
+    "successMessage": "Thank you! We will be in touch shortly.",
     "orLabel": "or",
     "bookCall": "Book a Call"
   },
@@ -89,6 +89,6 @@
   },
   "speaking": {
     "title": "Speaking",
-    "description": "Conferences and events where I've shared insights on SEO, analytics, and digital strategy."
+    "description": "Conferences and events where we share insights on SEO, analytics, and digital strategy."
   }
 }

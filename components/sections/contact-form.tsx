@@ -22,8 +22,8 @@ const labels = {
     optional: "(opsional)",
     messagePlaceholder: "Ceritakan situasi dan tujuan Anda...",
     budgetSelect: "Pilih kisaran anggaran",
-    responseNote: "Biasanya saya merespons dalam 24 jam.",
-    serverError: "Terjadi kesalahan. Coba lagi atau email langsung ke hello@hans.id",
+    responseNote: "Kami biasanya merespons dalam 24 jam.",
+    serverError: "Terjadi kesalahan. Coba lagi atau email langsung ke hello@relevate.id",
   },
   en: {
     name: "Name",
@@ -32,8 +32,8 @@ const labels = {
     optional: "(optional)",
     messagePlaceholder: "Tell us about your situation and goals...",
     budgetSelect: "Select a budget range",
-    responseNote: "I usually respond within 24 hours.",
-    serverError: "Something went wrong. Please try again or email hello@hans.id directly",
+    responseNote: "We usually respond within 24 hours.",
+    serverError: "Something went wrong. Please try again or email hello@relevate.id directly",
   },
 };
 

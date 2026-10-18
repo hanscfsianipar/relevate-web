@@ -43,53 +43,30 @@ export async function generateMetadata({
   };
 }
 
-// ─── Hardcoded events (fallback + source) ──────────────────────────────────
+// ─── Hardcoded events (fallback, sengaja kosong) ───────────────────────────
+// Isi event lewat Sanity Studio. Selama kosong, halaman hanya menampilkan intro.
 
-const events: SpeakingEvent[] = [
-  {
-    eventName: "Google Search Central Live",
-    date: "2024-07-25",
-    location: "Jakarta",
-    topicId: "Jangan Kejar Traffic!",
-    topicEn: "Beyond Traffic: Rethinking SEO Success Metrics",
-    descriptionId:
-      "Lightning Talk di Google Search Central Live Jakarta 2024 — pertama kalinya Google mengadakan sesi community lightning talk di Indonesia. Saya membawakan materi tentang mengapa metrik traffic sering kali menyesatkan, dan bagaimana SEO practitioner seharusnya mengukur dampak nyata terhadap bisnis.",
-    descriptionEn:
-      "Lightning Talk at Google Search Central Live Jakarta 2024 — the first time Google hosted community lightning talks in Indonesia. I spoke about why traffic metrics are often misleading, and how SEO practitioners should measure real business impact instead.",
-    eventUrl: "https://developers.google.com/search/blog/2024/10/scl-2024-jkt-bkk",
-  },
-  {
-    eventName: "SEO Conference",
-    date: "2019-03-13",
-    location: "Balai Kartini, Jakarta",
-    topicId: "SEO untuk Platform Skala Besar",
-    topicEn: "SEO at Scale: Lessons from Large Platforms",
-    descriptionId:
-      "Pembicara di SEO Conference 2019 — konferensi SEO pertama di Indonesia. Berbagi pengalaman menangani SEO untuk platform e-commerce dan media berskala besar, termasuk strategi crawling, indexability, dan content architecture untuk jutaan halaman.",
-    descriptionEn:
-      "Speaker at SEO Conference 2019 — Indonesia's first SEO conference. Shared experience managing SEO for large-scale e-commerce and media platforms, covering crawling strategy, indexability, and content architecture for millions of pages.",
-    eventUrl: "https://toffeedev.com/blog/digital-marketing/seo-conference-2019-pertama-di-indonesia-sukses-dilaksanakan/",
-  },
-];
+const events: SpeakingEvent[] = [];
+
 
 const copy = {
   id: {
-    headingLine1: "Lebih dari satu dekade,",
-    headingLine2: "berbagi di panggung yang sama dengan Google.",
+    headingLine1: "Berbagi di panggung",
+    headingLine2: "tempat ide diuji.",
     intro: [
-      "Dari konferensi SEO pertama di Indonesia hingga panggung Google Search Central, saya percaya bahwa knowledge sharing adalah bagian dari tanggung jawab profesional. Setiap kali saya berbicara, tujuannya bukan untuk mengajar, tapi untuk memulai percakapan yang tidak bisa terjadi lewat artikel atau dashboard.",
+      "Kami percaya knowledge sharing adalah bagian dari tanggung jawab profesional. Setiap kali berbicara, tujuannya bukan mengajar, tapi memulai percakapan yang tidak bisa terjadi lewat artikel atau dashboard.",
     ],
     ctaHeadline: "Punya topik yang ingin didiskusikan di event Anda?",
-    ctaButton: "Undang Saya",
+    ctaButton: "Undang Kami",
   },
   en: {
-    headingLine1: "Over a decade,",
-    headingLine2: "sharing the stage alongside Google.",
+    headingLine1: "On stage",
+    headingLine2: "where ideas get tested.",
     intro: [
-      "From Indonesia's first SEO conference to the Google Search Central stage, I believe that knowledge sharing is part of professional responsibility. Every time I speak, the goal is not to lecture, but to start conversations that can't happen through articles or dashboards alone.",
+      "We believe knowledge sharing is part of professional responsibility. Every time we speak, the goal is not to lecture, but to start conversations that can't happen through articles or dashboards alone.",
     ],
-    ctaHeadline: "Have a topic you'd like me to speak about at your event?",
-    ctaButton: "Invite Me",
+    ctaHeadline: "Have a topic you'd like us to speak about at your event?",
+    ctaButton: "Invite Us",
   },
 };
 

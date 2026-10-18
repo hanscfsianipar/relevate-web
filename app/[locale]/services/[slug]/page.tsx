@@ -31,17 +31,17 @@ type ServiceEntry = {
 const serviceData: Record<string, ServiceEntry> = {
   "seo-consulting": {
     caseStudy: {
-      slug: "bareksa-seo-recovery",
+      slug: "seo-recovery",
       label: { id: "Lihat contoh nyata", en: "See a real example" },
       meta: {
-        id: "Bareksa: Membalikkan penurunan traffic di tengah Google Core Update",
-        en: "Bareksa: Reversing traffic decline through a Google Core Update",
+        id: "Contoh: membalikkan penurunan traffic di tengah Google Core Update",
+        en: "Example: reversing traffic decline through a Google Core Update",
       },
     },
     id: {
-      title: "Jasa SEO Terpercaya - 10+ Tahun Pengalaman di Vidio, ShopBack, Lamudi | Hans",
-      subtitle: "Jasa SEO consultant terpercaya & berpengalaman 10+ tahun di Vidio, ShopBack, Lamudi, Ruparupa. Technical SEO audit, recovery Google Core Update, rendering audit.",
-      hero: "Traffic turun saat Google Core Update. Halaman tidak terindeks meski sudah dipublish. Kompetitor outrank padahal konten kamu lebih baik. Masalah seperti ini jarang berdiri sendiri. Biasanya ada technical debt yang menumpuk diam-diam: canonical yang konflik, halaman yang di-render di sisi client jadi terlihat kosong oleh Googlebot, atau mobile serving yang berbeda dari desktop. Pekerjaan saya dimulai dari sana.",
+      title: "Jasa SEO - Audit Teknis, Recovery Core Update, Content Strategy | Relevate",
+      subtitle: "Jasa SEO consultant untuk audit teknis, recovery Google Core Update, rendering audit, dan content strategy.",
+      hero: "Traffic turun saat Google Core Update. Halaman tidak terindeks meski sudah dipublish. Kompetitor outrank padahal konten kamu lebih baik. Masalah seperti ini jarang berdiri sendiri. Biasanya ada technical debt yang menumpuk diam-diam: canonical yang konflik, halaman yang di-render di sisi client jadi terlihat kosong oleh Googlebot, atau mobile serving yang berbeda dari desktop. Pekerjaan kami dimulai dari sana.",
       keywords: ["SEO Strategy", "Technical SEO", "Content SEO", "YMYL", "Indexability", "Rendering Audit", "SEO Audit"],
       problem: [
         "Traffic organik turun setelah Google Core Update dan tidak tahu harus mulai dari mana",
@@ -82,7 +82,7 @@ const serviceData: Record<string, ServiceEntry> = {
       faqs: [
         {
           q: "Berapa lama untuk melihat hasil?",
-          a: "Perbaikan teknikal bisa terasa dalam 4-8 minggu. Pertumbuhan traffic yang signifikan butuh 3-6 bulan. Tapi dari pengalaman saya, fix teknikal yang tepat bisa menghasilkan lonjakan besar di fase awal, terutama kalau ada isu indexing yang selama ini menahan visibility.",
+          a: "Perbaikan teknikal bisa terasa dalam 4-8 minggu. Pertumbuhan traffic yang signifikan butuh 3-6 bulan. Tapi dari pengalaman kami, fix teknikal yang tepat bisa menghasilkan lonjakan besar di fase awal, terutama kalau ada isu indexing yang selama ini menahan visibility.",
         },
         {
           q: "Apa itu YMYL dan kenapa relevan?",
@@ -90,18 +90,18 @@ const serviceData: Record<string, ServiceEntry> = {
         },
         {
           q: "Situs saya pakai React/Next.js, ada masalah?",
-          a: "Tergantung implementasinya. Framework modern bisa sangat SEO-friendly kalau dikonfigurasi dengan Server-Side Rendering (SSR) atau Static Generation. Tapi kalau masih pakai Client-Side Rendering murni, halaman kamu mungkin terlihat kosong oleh Googlebot. Ini salah satu hal pertama yang saya cek.",
+          a: "Tergantung implementasinya. Framework modern bisa sangat SEO-friendly kalau dikonfigurasi dengan Server-Side Rendering (SSR) atau Static Generation. Tapi kalau masih pakai Client-Side Rendering murni, halaman kamu mungkin terlihat kosong oleh Googlebot. Ini salah satu hal pertama yang kami cek.",
         },
         {
           q: "Apa yang beda dari pendekatan kamu?",
-          a: "Saya tidak declare victory sebelum ada konfirmasi nyata dari Google. Setiap perubahan teknikal diverifikasi lewat Search Console, bukan cuma dicatat sebagai 'done'. Dan setiap rekomendasi punya alasan yang bisa dijelaskan, bukan sekadar generic best practice.",
+          a: "Kami tidak declare victory sebelum ada konfirmasi nyata dari Google. Setiap perubahan teknikal diverifikasi lewat Search Console, bukan cuma dicatat sebagai 'done'. Dan setiap rekomendasi punya alasan yang bisa dijelaskan, bukan sekadar generic best practice.",
         },
       ],
     },
     en: {
-      title: "SEO Consultant with 10+ Years Experience - Vidio, ShopBack, Lamudi | Hans",
-      subtitle: "Trusted SEO consultant with 10+ years experience at Vidio, ShopBack, Lamudi, Ruparupa. Technical SEO audit, Core Update recovery, rendering audit, content strategy.",
-      hero: "Traffic drops during a Google Core Update. Pages don't get indexed despite being published. Competitors outrank you even though your content is better. Problems like these rarely stand alone. There's usually accumulated technical debt quietly catching up: conflicting canonicals, pages rendered on the client side that appear empty to Googlebot, or mobile serving inconsistent with desktop. That's where my work begins.",
+      title: "SEO Consultant - Technical Audit, Core Update Recovery, Content Strategy | Relevate",
+      subtitle: "SEO consulting for technical audits, Google Core Update recovery, rendering audits, and content strategy.",
+      hero: "Traffic drops during a Google Core Update. Pages don't get indexed despite being published. Competitors outrank you even though your content is better. Problems like these rarely stand alone. There's usually accumulated technical debt quietly catching up: conflicting canonicals, pages rendered on the client side that appear empty to Googlebot, or mobile serving inconsistent with desktop. That's where our work begins.",
       keywords: ["SEO Strategy", "Technical SEO", "Content SEO", "YMYL", "Indexability", "Rendering Audit", "SEO Audit"],
       problem: [
         "Organic traffic dropped after a Google Core Update and you don't know where to start",
@@ -142,7 +142,7 @@ const serviceData: Record<string, ServiceEntry> = {
       faqs: [
         {
           q: "How long does it take to see results?",
-          a: "Technical fixes can show movement in 4-8 weeks. Significant traffic growth takes 3-6 months. But in my experience, the right technical fix can produce a large early jump, especially when indexing issues have been silently suppressing visibility.",
+          a: "Technical fixes can show movement in 4-8 weeks. Significant traffic growth takes 3-6 months. But in our experience, the right technical fix can produce a large early jump, especially when indexing issues have been silently suppressing visibility.",
         },
         {
           q: "What is YMYL and why does it matter?",
@@ -162,7 +162,7 @@ const serviceData: Record<string, ServiceEntry> = {
   "marketing-analytics": {
     id: {
       title: "Marketing Analytics",
-      subtitle: "Jasa marketing analytics - audit GA4, implementasi & setup, attribution modeling, BigQuery SQL. 10+ tahun pengalaman data-driven di Vidio dan lainnya.",
+      subtitle: "Jasa marketing analytics: audit GA4, implementasi & setup, attribution modeling, BigQuery SQL.",
       hero: "Dashboard kamu penuh angka, tapi ketika diminta jelaskan ROI ke direksi, kamu tidak yakin. GA4 sudah dipasang, tapi tracking-nya kacau. Marketing analytics bukan soal kumpulkan data. Tapi soal ubah data itu jadi keputusan.",
       keywords: ["GA4", "Google Tag Manager", "Looker Studio", "BigQuery", "Attribution"],
       problem: [
@@ -194,7 +194,7 @@ const serviceData: Record<string, ServiceEntry> = {
       faqs: [
         {
           q: "Apakah saya perlu migrasi dari UA ke GA4?",
-          a: "Universal Analytics sudah tidak aktif sejak Juli 2023. Kalau kamu belum fully migrate, sekarang saat yang tepat. Saya bisa bantu pastikan tidak ada data yang hilang dalam prosesnya.",
+          a: "Universal Analytics sudah tidak aktif sejak Juli 2023. Kalau kamu belum fully migrate, sekarang saat yang tepat. Kami bisa bantu pastikan tidak ada data yang hilang dalam prosesnya.",
         },
         {
           q: "Apa bedanya audit GA4 vs. implementation?",
@@ -202,13 +202,13 @@ const serviceData: Record<string, ServiceEntry> = {
         },
         {
           q: "Apakah kamu juga bisa handle BigQuery dan SQL?",
-          a: "Ya. Untuk analisis yang lebih dalam atau data warehouse, saya bisa setup BigQuery integration dan buat custom queries yang tidak bisa dilakukan di GA4 standar.",
+          a: "Ya. Untuk analisis yang lebih dalam atau data warehouse, kami bisa setup BigQuery integration dan buat custom queries yang tidak bisa dilakukan di GA4 standar.",
         },
       ],
     },
     en: {
       title: "Marketing Analytics",
-      subtitle: "Marketing analytics audit, GA4 implementation & setup, attribution modeling, BigQuery SQL. 10+ years experience driving data-driven decisions at Vidio and more.",
+      subtitle: "Marketing analytics audit, GA4 implementation & setup, attribution modeling, BigQuery SQL.",
       hero: "Your dashboard is full of numbers, but when asked to explain ROI to the board, you're not sure. GA4 is installed, but the tracking is a mess. Marketing analytics isn't about collecting data. It's about turning it into decisions.",
       keywords: ["GA4", "Google Tag Manager", "Looker Studio", "BigQuery", "Attribution"],
       problem: [
@@ -260,7 +260,7 @@ const ui = {
     problemHeading: "Situasi ini kedengarannya familiar?",
     deliverablesHeading: "Yang akan kita kerjakan",
     sidebarHeading: "Siap mulai?",
-    sidebarNote: "Ceritakan situasi kamu. Saya akan balas dalam 24 jam.",
+    sidebarNote: "Ceritakan situasi kamu. Kami akan balas dalam 24 jam.",
     ctaBannerHeadline: "Tertarik tapi masih ada pertanyaan?",
     ctaBannerCta: "Mulai Diskusi",
   },

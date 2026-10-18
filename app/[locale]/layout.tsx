@@ -7,6 +7,7 @@ import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { SiteNav } from "@/components/layout/site-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { siteConfig } from "@/lib/site-config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +33,7 @@ export async function generateMetadata({
   return {
     title: {
       template: `%s`,
-      default: `Hans Christian Ferdinand - Marketing Analyst & SEO`,
+      default: `${siteConfig.brand} - ${siteConfig.tagline.en}`,
     },
   };
 }
@@ -66,7 +67,9 @@ export default async function LocaleLayout({
           <SiteFooter />
         </NextIntlClientProvider>
       </body>
-      <GoogleAnalytics gaId="G-RK7LMXHXSY" />
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   );
 }

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { siteConfig } from "@/lib/site-config";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -26,7 +27,7 @@ export async function POST(req: Request) {
 
       await resend.emails.send({
         from: "Website Contact <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL ?? "hansianipar@gmail.com",
+        to: siteConfig.contactEmail,
         subject: `Pesan baru dari ${data.name}`,
         html: `
           <h2>Pesan Baru dari Website</h2>

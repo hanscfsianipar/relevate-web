@@ -10,61 +10,61 @@
     "menu": "Menu"
   },
   "home": {
-    "heroTagline": "Marketing Analyst & SEO",
-    "heroHeadline": "Saya Cari Apa yang Benar-Benar Menggerakkan Pertumbuhan.",
-    "heroSubheadline": "Sebagian besar masalah marketing sebenarnya adalah masalah pengukuran. Saya bantu kamu cari driver pertumbuhan yang sesungguhnya, lalu bangun sistem di sekitarnya.",
-    "ctaPrimary": "Lihat Karya Saya",
+    "heroTagline": "Marketing Analytics & SEO",
+    "heroHeadline": "Kami Cari Apa yang Benar-Benar Menggerakkan Pertumbuhan.",
+    "heroSubheadline": "Sebagian besar masalah marketing sebenarnya masalah pengukuran. Kami bantu memisahkan sinyal dari kebisingan, lalu membangun sistem di sekitarnya.",
+    "ctaPrimary": "Lihat Karya Kami",
     "ctaSecondary": "Bekerja Sama",
-    "servicesTitle": "Apa yang Saya Kerjakan",
+    "servicesTitle": "Apa yang Kami Kerjakan",
     "workTitle": "Karya Terpilih",
     "expertiseTitle": "Keahlian & Tools",
-    "testimonialsTitle": "Kata Mereka",
-    "ctaBannerHeadline": "Siap Ubah Data Jadi Pertumbuhan?",
+    "testimonialsTitle": "Kata Klien",
+    "ctaBannerHeadline": "Siap Mengubah Data Jadi Pertumbuhan?",
     "ctaBannerCta": "Mari Bicara",
     "previouslyAt": "Lintas industri"
   },
   "about": {
-    "title": "Hans Christian Ferdinand - Tentang Saya",
-    "description": "Perjalanan karier dan filosofi kerja saya",
-    "metaDescription": "Hans Christian Ferdinand - dari staf SEO ke GM of Marketing Analytics di Vidio. Growth berbasis data, strategi SEO berbasis intent."
+    "title": "Relevate - Tentang Kami",
+    "description": "Cara kami bekerja dan prinsip yang kami pegang",
+    "metaDescription": "Relevate, tim marketing analytics dan SEO. Kami mulai dari pengukuran yang benar, lalu membangun strategi di atasnya."
   },
   "experience": {
-    "title": "Pengalaman Kerja Hans Christian Ferdinand",
-    "description": "Setiap perusahaan yang pernah saya bantu, dan bagaimana saya melakukannya.",
-    "metaDescription": "Pengalaman kerja Hans Christian Ferdinand - 10+ tahun di SEO & analytics sebagai GM of SEO Vidio, SEO Manager ShopBack, Lamudi, Ruparupa. Technical SEO, content strategy, marketing analytics.",
+    "title": "Pengalaman Tim Relevate",
+    "description": "Pengalaman yang membentuk cara kami bekerja.",
+    "metaDescription": "Pengalaman tim Relevate di SEO dan marketing analytics, dari sisi teknis sampai pengambilan keputusan.",
     "present": "Sekarang",
-    "whatIDid": "Apa yang Saya Kerjakan",
+    "whatIDid": "Apa yang Kami Kerjakan",
     "achievements": "Pencapaian Kunci",
     "tools": "Tools & Pendekatan",
     "lessons": "Pelajaran yang Dipetik",
     "relatedWork": "Studi Kasus Terkait"
   },
   "services": {
-    "title": "Layanan | Hans",
-    "description": "Bagaimana saya bisa bantu bisnis kamu.",
-    "metaDescription": "Jasa SEO consultant berpengalaman 10+ tahun di Vidio, ShopBack, Lamudi - technical SEO, audit marketing analytics, setup GA4, attribution modeling untuk growth terukur.",
+    "title": "Layanan | Relevate",
+    "description": "Bagaimana kami bisa membantu bisnis kamu.",
+    "metaDescription": "Layanan SEO, marketing analytics, dan pengukuran performa untuk pertumbuhan yang terukur.",
     "cta": "Mulai Diskusi",
     "faqs": "Pertanyaan Umum"
   },
   "caseStudies": {
-    "title": "Studi Kasus | Hans",
+    "title": "Studi Kasus | Relevate",
     "description": "Hasil nyata dari pekerjaan nyata.",
-    "metaDescription": "Pipeline AI Olimpiade Vidio (Top 5 global), pilot VideoObject markup (3x impressions), pemulihan traffic Bareksa - studi kasus SEO & analytics oleh Hans Christian Ferdinand.",
+    "metaDescription": "Studi kasus SEO dan marketing analytics dari pekerjaan kami.",
     "challenge": "Tantangan",
     "approach": "Pendekatan",
     "results": "Hasil"
   },
   "insights": {
-    "title": "Insight | Hans",
+    "title": "Insight | Relevate",
     "description": "Tulisan tentang SEO, analytics, dan strategi digital.",
-    "metaDescription": "Artikel SEO, marketing analytics, dan strategi digital oleh Hans Christian Ferdinand. Data-driven insights dari 10+ tahun di industri.",
+    "metaDescription": "Artikel SEO, marketing analytics, dan strategi digital dari tim Relevate.",
     "readMore": "Baca Selengkapnya",
     "minRead": "menit baca"
   },
   "contact": {
-    "title": "Kontak | Hans",
-    "description": "Ceritakan tentang proyek kamu. Saya akan balas dalam 24 jam.",
-    "metaDescription": "Konsultan SEO, marketing analytics, growth strategy - pesan konsultasi dengan Hans Christian Ferdinand. Saya balas dalam 24 jam.",
+    "title": "Kontak | Relevate",
+    "description": "Ceritakan tentang proyek kamu. Kami balas dalam 24 jam.",
+    "metaDescription": "Konsultasi SEO dan marketing analytics. Kirim brief kamu, kami balas dalam 24 jam.",
     "namePlaceholder": "Nama kamu",
     "emailPlaceholder": "Email kamu",
     "companyPlaceholder": "Nama Perusahaan",
@@ -73,12 +73,12 @@
     "budgetLabel": "Anggaran",
     "submit": "Kirim Pesan",
     "sending": "Mengirim...",
-    "successMessage": "Terima kasih! Saya akan hubungi kamu segera.",
+    "successMessage": "Terima kasih! Kami akan menghubungi kamu segera.",
     "orLabel": "atau",
     "bookCall": "Jadwalkan Panggilan"
   },
   "footer": {
-    "tagline": "Cari apa yang benar-benar menggerakkan pertumbuhan.",
+    "tagline": "Mencari apa yang benar-benar menggerakkan pertumbuhan.",
     "rights": "Semua hak dilindungi."
   },
   "common": {
@@ -89,6 +89,6 @@
   },
   "speaking": {
     "title": "Berbicara",
-    "description": "Konferensi dan event tempat saya berbagi wawasan tentang SEO, analytics, dan strategi digital."
+    "description": "Konferensi dan event tempat kami berbagi wawasan tentang SEO, analytics, dan strategi digital."
   }
 }
