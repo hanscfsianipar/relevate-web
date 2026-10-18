@@ -112,7 +112,16 @@ Estimasi 60 sampai 90 menit, sekali jalan.
 3. **Undang editor**: di Sanity, buka project, Members, Invite. Beri role Editor. Paket gratis dibatasi 3 user termasuk pemilik.
 4. **GitHub**: buat repo private, push kode ini, undang developer sebagai collaborator bila perlu.
 5. **Vercel**: import repo, isi environment variables di atas. Deploy production dijalankan lewat GitHub Actions (lihat bagian 11), jadi setelah import tambahkan tiga secrets Vercel di GitHub.
-6. **Domain**: di Vercel, tambahkan `relevate.id` dan `www.relevate.id`. Di panel DNS Niagahoster, arahkan sesuai instruksi Vercel (biasanya A record ke `76.76.21.21` untuk apex dan CNAME `www` ke `cname.vercel-dns.com`). Pilih satu versi kanonik, lalu redirect versi satunya.
+6. **Domain**: di Vercel, tambahkan `relevate.id` dan `www.relevate.id` (sudah dilakukan). Di panel DNS Hostinger, hapus record parking `A @ 2.57.91.91` dan `CNAME www relevate.id`, lalu isi:
+
+   | Type | Name | Value |
+   | --- | --- | --- |
+   | A | `@` | `216.198.79.1` |
+   | A | `@` | `64.29.17.1` |
+   | CNAME | `www` | `031df1d74cc4f822.vercel-dns-017.com` |
+
+   Nilai lama yang juga masih sah kalau mau seragam dengan hanscfs.com: `A @ 76.76.21.21` dan `CNAME www cname.vercel-dns.com`.
+
 7. **Resend**: verifikasi domain `relevate.id` supaya email form dikirim dari alamat sendiri, lalu pasang `RESEND_API_KEY`.
 8. **Uji**: kirim form kontak, buka `/sitemap.xml`, `/robots.txt`, `/studio`, satu halaman `/id` dan satu halaman `/en`.
 
@@ -146,6 +155,18 @@ Estimasi 60 sampai 90 menit, sekali jalan.
 - Dua dokumen contoh di Sanity: ganti isinya atau hapus setelah punya konten asli.
 
 ## 11. Deploy lewat GitHub Actions
+
+### Identitas setup saat ini
+
+Dicatat supaya tidak perlu dicari ulang:
+
+| Hal | Nilai |
+| --- | --- |
+| Vercel team (org) | `team_11g0oBkvRm8c6Gy3gV8o4jLj` (Hobby) |
+| Vercel project | `prj_PF2AhosUflnS7R3zkk17LsTIfTav` (`relevate-web`) |
+| Sanity project | `pcx1y31m` |
+| Domain utama | `www.relevate.id`, apex `relevate.id` redirect 308 ke www |
+| Proteksi deployment | Vercel Authentication untuk semua URL `*.vercel.app`, domain sendiri terbuka |
 
 Deploy production tidak lewat Git integration Vercel, tapi lewat Actions. Alasannya satu: di paket Hobby, Vercel hanya membangun commit yang author-nya pemilik akun. Dengan Actions, siapa pun di tim boleh commit dan deploy tetap jalan.
 
