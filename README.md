@@ -4,6 +4,8 @@ Website Relevate. Infrastruktur disalin dari hanscfs.com: Next.js 16 + Sanity CM
 
 Dokumen ini ditulis supaya orang baru bisa mengurus situs ini tanpa mempelajari infrastrukturnya dari awal.
 
+Orang baru mulai dari `ONBOARDING.md`, bukan dari sini.
+
 ## Untuk AI agent
 
 Kalau kamu memakai Claude, Codex, Cursor, atau agen lain untuk mengerjakan repo ini, suruh agennya membaca `AGENTS.md` lebih dulu. Di situ ada aturan wajib (parity dua bahasa, larangan em dash, kewajiban sumber gambar, daftar file yang tidak boleh disentuh), peta folder, perintah, alur PR, dan definisi selesai. README ini untuk manusia, AGENTS.md untuk agen.
