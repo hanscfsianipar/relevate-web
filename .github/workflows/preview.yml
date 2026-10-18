@@ -1,0 +1,95 @@
+name: Preview deployment
+
+# Setiap Pull Request dapat URL preview sendiri, plus komentar berisi link.
+# Hanya jalan untuk PR dari branch di repo ini. PR dari fork dilewati
+# karena secrets tidak tersedia di sana.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Cek secrets Vercel
+        run: |
+          missing=""
+          [ -z "$VERCEL_TOKEN" ] && missing="$missing VERCEL_TOKEN"
+          [ -z "$VERCEL_ORG_ID" ] && missing="$missing VERCEL_ORG_ID"
+          [ -z "$VERCEL_PROJECT_ID" ] && missing="$missing VERCEL_PROJECT_ID"
+          if [ -n "$missing" ]; then
+            echo "::error::Secret belum diisi:$missing. Lihat README bagian Deploy lewat GitHub Actions."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull environment preview
+        run: vercel pull --yes --environment=preview
+
+      - name: Build
+        run: vercel build
+
+      - name: Deploy preview
+        id: deploy
+        run: |
+          url=$(vercel deploy --prebuilt)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Preview: $url"
+
+      - name: Komentar URL preview
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const marker = '<!-- vercel-preview-url -->'
+            const url = '${{ steps.deploy.outputs.url }}'
+            const body = `${marker}\nPreview: ${url}`
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const existing = comments.find((c) => c.body && c.body.includes(marker))
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              })
+            }

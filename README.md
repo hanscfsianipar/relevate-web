@@ -111,7 +111,7 @@ Estimasi 60 sampai 90 menit, sekali jalan.
 2. **Seed contoh**: jalankan `npx tsx scripts/seed-examples.ts` supaya ada 1 studi kasus dan 1 artikel contoh sebagai template penulisan.
 3. **Undang editor**: di Sanity, buka project, Members, Invite. Beri role Editor. Paket gratis dibatasi 3 user termasuk pemilik.
 4. **GitHub**: buat repo private, push kode ini, undang developer sebagai collaborator bila perlu.
-5. **Vercel**: import repo, isi environment variables di atas, deploy.
+5. **Vercel**: import repo, isi environment variables di atas. Deploy production dijalankan lewat GitHub Actions (lihat bagian 11), jadi setelah import tambahkan tiga secrets Vercel di GitHub.
 6. **Domain**: di Vercel, tambahkan `relevate.id` dan `www.relevate.id`. Di panel DNS Niagahoster, arahkan sesuai instruksi Vercel (biasanya A record ke `76.76.21.21` untuk apex dan CNAME `www` ke `cname.vercel-dns.com`). Pilih satu versi kanonik, lalu redirect versi satunya.
 7. **Resend**: verifikasi domain `relevate.id` supaya email form dikirim dari alamat sendiri, lalu pasang `RESEND_API_KEY`.
 8. **Uji**: kirim form kontak, buka `/sitemap.xml`, `/robots.txt`, `/studio`, satu halaman `/id` dan satu halaman `/en`.
@@ -133,11 +133,61 @@ Estimasi 60 sampai 90 menit, sekali jalan.
 | Form tidak mengirim email | `RESEND_API_KEY` kosong atau domain belum diverifikasi di Resend |
 | Gambar dari Sanity tidak muncul | Hostname `cdn.sanity.io` harus ada di `next.config.ts` pada `images.remotePatterns` |
 | Perubahan konten tidak muncul setelah 1 menit | Cek dokumen sudah Publish, bukan masih draft |
+| Push ke `main` tapi situs tidak berubah | Buka tab Actions di GitHub. Biasanya secrets Vercel belum diisi, atau build gagal |
+| Vercel tidak deploy otomatis saat ada commit | Memang dimatikan lewat `vercel.json` (`git.deploymentEnabled: false`). Deploy lewat GitHub Actions |
+| PR tidak dapat komentar URL preview | Cek workflow Preview deployment di tab Actions, dan pastikan PR berasal dari branch di repo ini, bukan fork |
 
 ## 10. Yang masih perlu diganti sebelum publik
 
 - `lib/site-config.ts`: nama brand, tagline, email kontak, akun sosial (masih kosong, jadi ikon sosial tidak tampil).
 - `messages/id.json` dan `messages/en.json`: copy bawaan masih generik dan perlu disesuaikan dengan posisi Relevate.
 - `components/sections/company-logo-strip.tsx`: daftar logo masih kosong.
-- `public/` dan `app/`: favicon serta icon masih bawaan template. Ganti `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`.
+- `public/` dan `app/`: icon masih placeholder huruf R. Ganti `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` dengan logo Relevate.
 - Dua dokumen contoh di Sanity: ganti isinya atau hapus setelah punya konten asli.
+
+## 11. Deploy lewat GitHub Actions
+
+Deploy production tidak lewat Git integration Vercel, tapi lewat Actions. Alasannya satu: di paket Hobby, Vercel hanya membangun commit yang author-nya pemilik akun. Dengan Actions, siapa pun di tim boleh commit dan deploy tetap jalan.
+
+Konsekuensinya: `vercel.json` berisi `git.deploymentEnabled: false`, jadi commit ke GitHub tidak memicu build Vercel secara langsung. Jangan panik kalau dashboard Vercel tidak menunjukkan deployment baru. Yang menentukan adalah tab Actions di GitHub.
+
+### Secrets yang dibutuhkan
+
+Settings, Secrets and variables, Actions, New repository secret:
+
+| Nama | Isi | Cara dapat |
+| --- | --- | --- |
+| `VERCEL_TOKEN` | Token akun Vercel | `vercel.com/account/tokens`, Create Token, scope akun penuh |
+| `VERCEL_ORG_ID` | ID akun atau tim | `vercel link` di folder project, lalu buka `.vercel/project.json`, ambil `orgId` |
+| `VERCEL_PROJECT_ID` | ID project | File yang sama, ambil `projectId` |
+
+`vercel link` dijalankan sekali di komputer sendiri. Isi `.vercel/` sudah masuk gitignore, jadi tidak ikut ke repo.
+
+### Alur kerjanya
+
+| Kejadian | Yang terjadi |
+| --- | --- |
+| Push ke `main` | Workflow Deploy production: build dan deploy ke production |
+| Buka atau update Pull Request | Workflow Preview deployment: deploy ke URL preview, lalu komentar link-nya di PR |
+| Butuh deploy ulang tanpa commit | Tab Actions, pilih Deploy production, Run workflow |
+
+### Deploy manual kalau Actions bermasalah
+
+Dari komputer yang sudah punya akses:
+
+```bash
+npx vercel@latest --prod
+```
+
+Atau pakai token tanpa login interaktif:
+
+```bash
+VERCEL_TOKEN=xxx npx vercel@latest --prod --yes
+```
+
+### Batas yang perlu diingat
+
+- Saat pertama kali import repo, situs belum online sampai workflow Deploy production dijalankan sekali. Isi secrets dulu, lalu Run workflow
+- Repo private memakai menit Actions gratis 2.000 per bulan. Satu deploy sekitar 2 sampai 4 menit, jadi masih jauh dari batas untuk tim kecil
+- PR dari fork tidak mendapat preview, karena secrets tidak tersedia di sana. Untuk tim internal ini tidak masalah
+- Kalau nanti pindah ke Pro, kamu bisa memilih: tetap pakai Actions, atau matikan `git.deploymentEnabled` dan serahkan deploy ke Vercel
