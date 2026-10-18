@@ -136,15 +136,34 @@ export default async function InsightDetailPage({
             </header>
 
             {post.featureImage && (
-              <div className="mb-10 rounded-xl overflow-hidden aspect-video relative">
-                <Image
-                  src={urlFor(post.featureImage).width(1200).height(675).fit("crop").url()}
-                  alt={title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              <figure className="mb-10">
+                <div className="rounded-xl overflow-hidden aspect-video relative">
+                  <Image
+                    src={urlFor(post.featureImage).width(1200).height(675).fit("crop").url()}
+                    alt={post.imageAlt || title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {post.imageSourceName && (
+                  <figcaption className="mt-2 text-xs text-muted-foreground">
+                    {locale === "en" ? "Source:" : "Sumber:"}{" "}
+                    {post.imageSourceUrl ? (
+                      <a
+                        href={post.imageSourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        className="underline hover:text-foreground"
+                      >
+                        {post.imageSourceName}
+                      </a>
+                    ) : (
+                      post.imageSourceName
+                    )}
+                  </figcaption>
+                )}
+              </figure>
             )}
 
             {body && (

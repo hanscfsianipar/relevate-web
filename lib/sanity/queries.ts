@@ -60,6 +60,9 @@ export type InsightListItem = {
   readTime: number
   date: string
   featureImage?: { asset: { _ref: string } }
+  imageAlt?: string
+  imageSourceName?: string
+  imageSourceUrl?: string
 }
 
 export type InsightDetail = InsightListItem & { seo?: SeoData }
@@ -90,6 +93,9 @@ export async function getInsightBySlug(slug: string): Promise<InsightDetail | nu
       readTime,
       date,
       featureImage,
+      imageAlt,
+      imageSourceName,
+      imageSourceUrl,
       id,
       en,
       seo { metaTitleId, metaTitleEn, metaDescId, metaDescEn, ogImage { asset->{ url } }, noIndex }
