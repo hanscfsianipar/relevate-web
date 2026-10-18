@@ -1,0 +1,39 @@
+#!/bin/sh
+# Pre-commit guard: menolak commit yang membawa file .env atau pola token.
+# Dipasang otomatis oleh `npm install` (lihat scripts/install-hooks.sh).
+#
+# Jangan dilewati dengan --no-verify. Kalau hook ini menghalangi,
+# artinya memang ada yang salah.
+
+blocked=""
+
+for f in $(git diff --cached --name-only --diff-filter=ACM); do
+  case "$f" in
+    *.example|*.example.*) continue ;;
+    .env|.env.*|*/.env|*/.env.*)
+      blocked="$blocked\n  - $f (file env tidak boleh masuk repo)"
+      ;;
+  esac
+done
+
+patterns='sk[A-Za-z0-9]{40,}|vcp_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[baprs]-[A-Za-z0-9-]{10,}'
+hits=$(git diff --cached -U0 -- . ':!*.md' | grep -E '^\+' | grep -nE "$patterns" | head -5)
+
+if [ -n "$blocked" ] || [ -n "$hits" ]; then
+  echo ""
+  echo "COMMIT DITOLAK: terdeteksi kredensial."
+  printf "%b\n" "$blocked"
+  if [ -n "$hits" ]; then
+    echo "  Pola token ditemukan di isi file:"
+    echo "$hits" | sed 's/^/    /'
+  fi
+  echo ""
+  echo "Yang harus dilakukan:"
+  echo "  1. Pindahkan nilainya ke .env.local (sudah di-gitignore)"
+  echo "  2. Kalau sudah telanjur masuk commit sebelumnya, cabut tokennya di dashboard layanan"
+  echo "  3. Ulangi commit tanpa --no-verify"
+  echo ""
+  exit 1
+fi
+
+exit 0
