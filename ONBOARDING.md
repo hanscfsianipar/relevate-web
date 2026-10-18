@@ -6,7 +6,18 @@ Panduan awal untuk Timothy dan Disha. Sebagian besar langkah bisa dikerjakan AI 
 
 1. **Terima undangan GitHub** lewat email, atau buka `github.com/hanscfsianipar/relevate-web` dan klik accept
 2. **Pasang Node.js versi 20 atau lebih baru** (`node -v` untuk cek)
-3. **Terima token Sanity dari Hans lewat chat pribadi.** Jangan minta di grup, jangan tempel di mana pun selain `.env.local`
+3. **Terima token Sanity dari Hans lewat chat pribadi.** Jangan minta di grup, jangan tempel ke chat AI, jangan screenshot
+
+   Cara aman menyimpannya, khusus pengguna Hermes:
+
+   ```
+   Tolong simpan token ini ke .env.local di root repo relevate-web.
+   Aturan: chmod 600, jangan tulis ke file lain, jangan tampilkan nilainya
+   di jawaban, jangan pernah commit. Setelah selesai, jalankan npm run check:env
+   dan laporkan hasilnya.
+   ```
+
+   Setelah itu hapus pesan WhatsApp yang berisi token. Repo ini punya pengaman: hook pre-commit menolak commit berisi file `.env` atau pola token, dan workflow Guard secrets memindai seluruh repo di setiap PR.
 4. **Clone repo** kalau belum ada:
 
    ```bash

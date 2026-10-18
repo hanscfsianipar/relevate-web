@@ -1,0 +1,38 @@
+name: Guard secrets
+
+# Pengaman lapis kedua. Hook pre-commit bisa dilewati, ini tidak.
+# Gagal kalau ada file .env yang ter-commit atau pola token di dalam repo.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Cek file env yang ter-commit
+        run: |
+          found=$(git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.example' || true)
+          if [ -n "$found" ]; then
+            echo "::error::File env ikut ter-commit: $found"
+            exit 1
+          fi
+          echo "Tidak ada file env yang ter-commit."
+
+      - name: Cek pola token di isi repo
+        run: |
+          hits=$(git grep -nE 'sk[A-Za-z0-9]{40,}|vcp_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----' -- . ':!*.md' || true)
+          if [ -n "$hits" ]; then
+            echo "::error::Pola token ditemukan:"
+            echo "$hits"
+            exit 1
+          fi
+          echo "Tidak ada pola token ditemukan."

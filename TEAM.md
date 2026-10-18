@@ -90,6 +90,15 @@ Studio di browser cukup untuk mengisi konten manual. Tapi kalau agenmu harus mem
 
 Kalau Hans sudah membuatkan token untukmu, pakai token itu, dan simpan hanya di `.env.local`. Token hanya ditampilkan sekali saat dibuat, jadi kalau hilang, minta Hans mencabut lalu buat yang baru.
 
+Pengaman yang sudah terpasang di repo ini:
+
+- `.env.local` masuk gitignore, jadi `git add .` tidak akan membawanya
+- Hook pre-commit menolak commit yang berisi file `.env` atau pola token. Hook aktif otomatis lewat `npm install`
+- Workflow `Guard secrets` memindai seluruh repo di setiap PR dan push ke main. Kalau hook dilewati, ini yang menangkap
+- `npm run check:env` memeriksa `.env.local` ada, di-gitignore, tidak ter-track, dan token valid, tanpa pernah mencetak nilainya
+
+Jadi kalau Hermes atau agentmu menolak menyimpan token di tempat aneh, itu memang disengaja.
+
 Env minimal untuk kerja lokal:
 
 ```
