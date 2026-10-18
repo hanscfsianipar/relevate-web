@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "about": "Tentang",
+    "experience": "Pengalaman",
+    "services": "Layanan",
+    "caseStudies": "Studi Kasus",
+    "insights": "Insight",
+    "speaking": "Berbicara",
+    "contact": "Kontak",
+    "menu": "Menu"
+  },
+  "home": {
+    "heroTagline": "Marketing Analyst & SEO",
+    "heroHeadline": "Saya Cari Apa yang Benar-Benar Menggerakkan Pertumbuhan.",
+    "heroSubheadline": "Sebagian besar masalah marketing sebenarnya adalah masalah pengukuran. Saya bantu kamu cari driver pertumbuhan yang sesungguhnya, lalu bangun sistem di sekitarnya.",
+    "ctaPrimary": "Lihat Karya Saya",
+    "ctaSecondary": "Bekerja Sama",
+    "servicesTitle": "Apa yang Saya Kerjakan",
+    "workTitle": "Karya Terpilih",
+    "expertiseTitle": "Keahlian & Tools",
+    "testimonialsTitle": "Kata Mereka",
+    "ctaBannerHeadline": "Siap Ubah Data Jadi Pertumbuhan?",
+    "ctaBannerCta": "Mari Bicara",
+    "previouslyAt": "Lintas industri"
+  },
+  "about": {
+    "title": "Hans Christian Ferdinand - Tentang Saya",
+    "description": "Perjalanan karier dan filosofi kerja saya",
+    "metaDescription": "Hans Christian Ferdinand - dari staf SEO ke GM of Marketing Analytics di Vidio. Growth berbasis data, strategi SEO berbasis intent."
+  },
+  "experience": {
+    "title": "Pengalaman Kerja Hans Christian Ferdinand",
+    "description": "Setiap perusahaan yang pernah saya bantu, dan bagaimana saya melakukannya.",
+    "metaDescription": "Pengalaman kerja Hans Christian Ferdinand - 10+ tahun di SEO & analytics sebagai GM of SEO Vidio, SEO Manager ShopBack, Lamudi, Ruparupa. Technical SEO, content strategy, marketing analytics.",
+    "present": "Sekarang",
+    "whatIDid": "Apa yang Saya Kerjakan",
+    "achievements": "Pencapaian Kunci",
+    "tools": "Tools & Pendekatan",
+    "lessons": "Pelajaran yang Dipetik",
+    "relatedWork": "Studi Kasus Terkait"
+  },
+  "services": {
+    "title": "Layanan | Hans",
+    "description": "Bagaimana saya bisa bantu bisnis kamu.",
+    "metaDescription": "Jasa SEO consultant berpengalaman 10+ tahun di Vidio, ShopBack, Lamudi - technical SEO, audit marketing analytics, setup GA4, attribution modeling untuk growth terukur.",
+    "cta": "Mulai Diskusi",
+    "faqs": "Pertanyaan Umum"
+  },
+  "caseStudies": {
+    "title": "Studi Kasus | Hans",
+    "description": "Hasil nyata dari pekerjaan nyata.",
+    "metaDescription": "Pipeline AI Olimpiade Vidio (Top 5 global), pilot VideoObject markup (3x impressions), pemulihan traffic Bareksa - studi kasus SEO & analytics oleh Hans Christian Ferdinand.",
+    "challenge": "Tantangan",
+    "approach": "Pendekatan",
+    "results": "Hasil"
+  },
+  "insights": {
+    "title": "Insight | Hans",
+    "description": "Tulisan tentang SEO, analytics, dan strategi digital.",
+    "metaDescription": "Artikel SEO, marketing analytics, dan strategi digital oleh Hans Christian Ferdinand. Data-driven insights dari 10+ tahun di industri.",
+    "readMore": "Baca Selengkapnya",
+    "minRead": "menit baca"
+  },
+  "contact": {
+    "title": "Kontak | Hans",
+    "description": "Ceritakan tentang proyek kamu. Saya akan balas dalam 24 jam.",
+    "metaDescription": "Konsultan SEO, marketing analytics, growth strategy - pesan konsultasi dengan Hans Christian Ferdinand. Saya balas dalam 24 jam.",
+    "namePlaceholder": "Nama kamu",
+    "emailPlaceholder": "Email kamu",
+    "companyPlaceholder": "Nama Perusahaan",
+    "websitePlaceholder": "URL Website",
+    "messagePlaceholder": "Apa yang ingin kamu capai?",
+    "budgetLabel": "Anggaran",
+    "submit": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "successMessage": "Terima kasih! Saya akan hubungi kamu segera.",
+    "orLabel": "atau",
+    "bookCall": "Jadwalkan Panggilan"
+  },
+  "footer": {
+    "tagline": "Cari apa yang benar-benar menggerakkan pertumbuhan.",
+    "rights": "Semua hak dilindungi."
+  },
+  "common": {
+    "viewAll": "Lihat Semua",
+    "backTo": "Kembali ke",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "seeResults": "Lihat Hasil"
+  },
+  "speaking": {
+    "title": "Berbicara",
+    "description": "Konferensi dan event tempat saya berbagi wawasan tentang SEO, analytics, dan strategi digital."
+  }
+}
