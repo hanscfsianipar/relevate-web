@@ -118,8 +118,8 @@ Estimasi 60 sampai 90 menit, sekali jalan.
 
 ## 8. Biaya yang perlu diketahui
 
-- **Vercel**: paket Hobby tidak boleh dipakai untuk situs komersial. Untuk situs ini perlu Pro, sekitar 20 dolar per bulan per akun.
-- **Sanity**: paket gratis 3 user dan 2 dataset. Editor tambahan sekitar 15 dolar per user per bulan.
+- **Vercel**: tahap awal pakai Hobby (gratis). Catatan resmi Vercel: Hobby dibatasi untuk pemakaian non-komersial, jadi rencanakan upgrade ke Pro sekitar 20 dolar per bulan per akun begitu situs dipakai untuk jualan atau traffic naik. Limit Hobby yang paling cepat terasa: bandwidth 100 GB per bulan dan kuota build.
+- **Sanity**: paket gratis 3 user dan 2 dataset. Sesuai keputusan awal, cukup 3 user: pemilik ditambah 2 editor. Kalau nanti perlu editor ketiga, biaya sekitar 15 dolar per user per bulan.
 - **Resend**: gratis untuk volume kecil, cukup untuk form kontak.
 - **Domain**: biaya tahunan di Niagahoster.
 
