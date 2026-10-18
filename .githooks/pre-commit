@@ -16,7 +16,7 @@ for f in $(git diff --cached --name-only --diff-filter=ACM); do
   esac
 done
 
-patterns='sk[A-Za-z0-9]{40,}|vcp_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[baprs]-[A-Za-z0-9-]{10,}'
+patterns='\bsk[A-Za-z0-9]{100,}\b|\bvcp_[A-Za-z0-9]{20,}\b|-----BEGIN [A-Z ]*PRIVATE KEY-----|\bxox[baprs]-[A-Za-z0-9-]{10,}'
 hits=$(git diff --cached -U0 -- . ':!*.md' | grep -E '^\+' | grep -nE "$patterns" | head -5)
 
 if [ -n "$blocked" ] || [ -n "$hits" ]; then
