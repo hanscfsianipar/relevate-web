@@ -2,16 +2,21 @@
 
 import Image from "next/image";
 
-const companies = [
-  // transparent-bg logos: use brightness-0 so light/grey pixels become black
-  { slug: "vidio",    name: "MediaCo",    logo: "/logos/vidio.png",    cls: "brightness-0 opacity-35",                              offsetY: 0 },
-  { slug: "shopback", name: "EcomCo", logo: "/logos/shopback.svg", cls: "grayscale opacity-50 mix-blend-multiply",              offsetY: 0 },
-  // stacked icon+text logos: offsetY shifts image up so wordmark aligns with text logos
-  { slug: "bareksa",  name: "FintechCo",  logo: "/logos/bareksa2.png", cls: "grayscale opacity-50 mix-blend-multiply !max-w-[80px]", offsetY: -6 },
-  { slug: "lamudi",   name: "ProptechCo",   logo: "/logos/lamudi.png",   cls: "grayscale opacity-50 mix-blend-multiply !max-w-[80px]", offsetY: -5 },
-  { slug: "ruparupa", name: "RetailCo", logo: "/logos/ruparupa.png", cls: "grayscale opacity-50 mix-blend-multiply",              offsetY: 0 },
-  { slug: "wadezig",  name: "AgencyCo",  logo: "/logos/wadezig.jpg",  cls: "grayscale opacity-40 mix-blend-multiply",              offsetY: 0 },
-  { slug: "pinnacle", name: "ClientCo", logo: null,                  cls: "",                                                      offsetY: 0 },
+/**
+ * Strip logo klien / perusahaan.
+ * GANTI: isi daftar di bawah dengan logo kamu sendiri.
+ * Taruh file logo di public/logos/, lalu daftarkan di sini.
+ * Array kosong = strip tidak ditampilkan, layout tetap rapi.
+ */
+const companies: {
+  slug: string;
+  name: string;
+  logo: string | null;
+  cls?: string;
+  offsetY?: number;
+}[] = [
+  // Contoh format:
+  // { slug: "contoh", name: "Contoh", logo: "/logos/contoh.png", cls: "grayscale opacity-50 mix-blend-multiply", offsetY: 0 },
 ];
 
 interface CompanyLogoStripProps {
@@ -19,6 +24,8 @@ interface CompanyLogoStripProps {
 }
 
 export function CompanyLogoStrip({ label }: CompanyLogoStripProps) {
+  if (companies.length === 0) return null;
+
   return (
     <div className="border-y border-border py-8">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -34,7 +41,7 @@ export function CompanyLogoStrip({ label }: CompanyLogoStripProps) {
                 alt={name}
                 width={200}
                 height={40}
-                className={`h-6 w-auto max-w-[110px] shrink-0 object-contain hover:opacity-80 transition-opacity ${cls}`}
+                className={`h-6 w-auto max-w-[110px] shrink-0 object-contain hover:opacity-80 transition-opacity ${cls ?? ""}`}
                 style={offsetY ? { transform: `translateY(${offsetY}px)` } : undefined}
               />
             ) : (

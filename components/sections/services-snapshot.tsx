@@ -24,8 +24,8 @@ const services: {
     slug: "seo-consulting",
     title: "SEO Consulting",
     desc: {
-      id: "Saya tidak hanya lapor traffic naik. Saya cari driver yang sesungguhnya dan jelaskan apa yang harus diubah.",
-      en: "I don't just report traffic going up. I find the real drivers and explain what needs to change.",
+      id: "Kami tidak hanya lapor traffic naik. Kami cari driver yang sesungguhnya dan jelaskan apa yang harus diubah.",
+      en: "We don't just report traffic going up. We find the real drivers and explain what needs to change.",
     },
     cta: { id: "Pelajari lebih lanjut", en: "Learn more" },
   },
@@ -36,8 +36,8 @@ const services: {
     slug: "marketing-analytics",
     title: "Marketing Analytics",
     desc: {
-      id: "Saya bantu tim menemukan mana yang real signal dan mana yang noise, supaya keputusan tidak lagi berbasis tebakan.",
-      en: "I help teams separate real signal from noise, so decisions aren't based on guesswork.",
+      id: "Kami bantu tim menemukan mana yang real signal dan mana yang noise, supaya keputusan tidak lagi berbasis tebakan.",
+      en: "We help teams separate real signal from noise, so decisions aren't based on guesswork.",
     },
     cta: { id: "Pelajari lebih lanjut", en: "Learn more" },
   },

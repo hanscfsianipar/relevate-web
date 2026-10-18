@@ -1,7 +1,8 @@
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { siteConfig } from "@/lib/site-config";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.siteUrl;
 
 type Href = Parameters<typeof getPathname>[0]["href"];
 

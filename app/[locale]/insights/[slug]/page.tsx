@@ -10,6 +10,7 @@ import Image from "next/image";
 import { getInsightBySlug, getInsightByShortId, getAllInsightSlugs } from "@/lib/sanity/queries";
 import { ReadingProgress } from "@/components/ui/reading-progress";
 import { urlFor } from "@/lib/sanity/client";
+import { siteConfig } from "@/lib/site-config";
 import { extractShortId, buildCanonicalSegment } from "@/lib/shortId";
 import { routing } from "@/i18n/routing";
 
@@ -93,7 +94,7 @@ export default async function InsightDetailPage({
   const t = await getTranslations({ locale, namespace: "insights" });
 
   const ctaBanner = {
-    id: { headline: "Butuh bantuan menerapkan ini untuk bisnis Anda?", cta: "Hubungi Saya" },
+    id: { headline: "Butuh bantuan menerapkan ini untuk bisnis Anda?", cta: "Hubungi Kami" },
     en: { headline: "Need help applying this to your business?", cta: "Get in Touch" },
   };
   const banner = locale === "en" ? ctaBanner.en : ctaBanner.id;
@@ -120,7 +121,7 @@ export default async function InsightDetailPage({
                 {title}
               </h1>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span>Hans</span>
+                <span>{siteConfig.brand}</span>
                 <span>·</span>
                 <span>
                   {new Date(post.date).toLocaleDateString(locale === "en" ? "en-US" : "id-ID", {
@@ -230,10 +231,10 @@ export default async function InsightDetailPage({
             <div className="mt-12 pt-8 border-t border-border/60">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center shrink-0">
-                  <span className="text-sm font-bold text-accent">H</span>
+                  <span className="text-sm font-bold text-accent">{siteConfig.brand.charAt(0)}</span>
                 </div>
                 <div>
-                  <p className="font-semibold text-sm">Hans</p>
+                  <p className="font-semibold text-sm">{siteConfig.brand}</p>
                   {authorBio && (
                     <p className="text-sm text-muted-foreground mt-1">{authorBio}</p>
                   )}

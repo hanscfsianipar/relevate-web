@@ -55,7 +55,7 @@ export default async function ExperiencePage({
         <StaggerChildren className="space-y-4">
           {experiences.map(({ slug, shortId, company, logo, role, periodStart, periodEnd, industry, id, en, tags, metric }) => {
             const logoUrl = logo ? urlFor(logo).height(56).url() : null;
-            const isMediaCo = company === "MediaCo";
+            const isHighlightLogo = company === "MediaCo";
             const highlight = locale === "en" ? en.highlight : id.highlight;
             const href = shortId ? buildCanonicalSegment(shortId, slug) : slug;
 
@@ -108,7 +108,7 @@ export default async function ExperiencePage({
                           alt={company}
                           width={72}
                           height={28}
-                          className={`h-6 w-auto max-w-[90px] object-contain hidden sm:block ${isMediaCo ? "brightness-0 opacity-35" : "grayscale opacity-50 mix-blend-multiply"}`}
+                          className={`h-6 w-auto max-w-[90px] object-contain hidden sm:block ${isHighlightLogo ? "brightness-0 opacity-35" : "grayscale opacity-50 mix-blend-multiply"}`}
                         />
                       ) : null}
                       <div className="flex items-center text-muted-foreground group-hover:text-foreground transition-colors">

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { client } from "@/lib/sanity/client";
+import { fetchList } from "@/lib/sanity/client";
 import { buildCanonicalSegment } from "@/lib/shortId";
+import { siteConfig } from "@/lib/site-config";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.hanscfs.com";
+const baseUrl = siteConfig.siteUrl;
 const locales = ["id", "en"];
 
 function fmt(d: Date): string {
@@ -14,9 +15,8 @@ function url(path: string, locale: string) {
 }
 
 export async function GET() {
-  const insights = await client.fetch<
-    { slug: string; shortId?: string; date?: string }[]
-  >(
+  const insights = await fetchList<
+    { slug: string; shortId?: string; date?: string }>(
     `*[_type == "insight"] { "slug": slug.current, shortId, date }`,
     {},
     { next: { revalidate: 3600 } },

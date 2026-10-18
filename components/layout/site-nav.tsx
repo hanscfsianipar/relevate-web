@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "./language-switcher";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { key: "about" as const, href: "/about" },
@@ -35,8 +36,8 @@ export function SiteNav() {
             href="/"
             className="font-bricolage text-lg font-semibold tracking-tight hover:opacity-80 transition-opacity"
           >
-            Hans
-            <span className="text-accent">.</span>
+            {siteConfig.brand}
+            <span className="text-accent">{siteConfig.wordmarkSuffix}</span>
           </Link>
 
           {/* Desktop nav */}

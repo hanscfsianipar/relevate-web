@@ -58,7 +58,7 @@ const copy = {
         title: "SEO Consulting",
         tagline: "Bukan soal traffic semata. Tapi traffic yang punya intent.",
         description:
-          "Sebelum ada solusi, harus ada diagnosis. Saya cari root cause-nya dulu, bukan langsung loncat ke taktik.",
+          "Sebelum ada solusi, harus ada diagnosis. Kami cari root cause-nya dulu, bukan langsung loncat ke taktik.",
         outcomes: [
           "Technical audit: canonical conflict, rendering issue, indexability",
           "YMYL compliance untuk fintech, health, dan legal platform",
@@ -71,7 +71,7 @@ const copy = {
         title: "Marketing Analytics",
         tagline: "Banyak metrik yang kamu pantau tidak menjawab pertanyaan bisnis yang sesungguhnya.",
         description:
-          "Saya bantu kamu bedakan mana real signal, mana noise. Dari tracking setup yang akurat sampai attribution model yang jujur, supaya keputusan besar tidak lagi berbasis tebakan.",
+          "Kami bantu kamu bedakan mana real signal, mana noise. Dari tracking setup yang akurat sampai attribution model yang jujur, supaya keputusan besar tidak lagi berbasis tebakan.",
         outcomes: [
           "GA4 implementation & audit: pastikan data yang masuk bisa dipercaya",
           "Google Tag Manager setup & governance",
@@ -82,8 +82,8 @@ const copy = {
       },
     ],
     process: [
-      { step: "01", title: "Discovery", desc: "Kita mulai dengan pertanyaan yang tepat, bukan langsung ke solusi. Saya perlu paham konteks bisnis, bukan cuma gejalanya." },
-      { step: "02", title: "Audit & Diagnosis", desc: "Saya cari root cause-nya, bukan cuma surface problem. Apa yang benar-benar terjadi vs. apa yang terlihat terjadi." },
+      { step: "01", title: "Discovery", desc: "Kita mulai dengan pertanyaan yang tepat, bukan langsung ke solusi. Kami perlu paham konteks bisnis, bukan cuma gejalanya." },
+      { step: "02", title: "Audit & Diagnosis", desc: "Kami cari root cause-nya, bukan cuma surface problem. Apa yang benar-benar terjadi vs. apa yang terlihat terjadi." },
       { step: "03", title: "Strategy & Model", desc: "Rencana yang bisa dijelaskan logikanya: variabel apa yang diubah, hipotesisnya apa, dan bagaimana cara ukur hasilnya." },
       { step: "04", title: "Execute & Learn", desc: "Eksekusi dengan tracking ketat. Setiap aksi adalah eksperimen. Hasilnya yang menentukan langkah berikutnya." },
     ],
@@ -111,7 +111,7 @@ const copy = {
         title: "Marketing Analytics",
         tagline: "Many metrics you track may be misleading",
         description:
-          "I help you identify what's real signal and what's noise. From accurate tracking setup to honest attribution modeling, so big decisions aren't based on guesswork.",
+          "We help you identify what's real signal and what's noise. From accurate tracking setup to honest attribution modeling, so big decisions aren't based on guesswork.",
         outcomes: [
           "GA4 implementation & audit: ensure incoming data is trustworthy",
           "Google Tag Manager setup & governance",

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { client } from "@/lib/sanity/client";
+import { fetchList } from "@/lib/sanity/client";
 import { buildCanonicalSegment } from "@/lib/shortId";
+import { siteConfig } from "@/lib/site-config";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.hanscfs.com";
+const baseUrl = siteConfig.siteUrl;
 const locales = ["id", "en"];
 
 function fmt(d: Date): string {
@@ -38,9 +39,8 @@ export async function GET() {
   }
 
   // ── Case Studies ──────────────────────────────────────────────────────────
-  const caseStudies = await client.fetch<
-    { slug: string; shortId?: string; _updatedAt?: string }[]
-  >(
+  const caseStudies = await fetchList<
+    { slug: string; shortId?: string; _updatedAt?: string }>(
     `*[_type == "caseStudy"] { "slug": slug.current, shortId, _updatedAt }`,
     {},
     { next: { revalidate: 3600 } },
@@ -58,9 +58,8 @@ export async function GET() {
   }
 
   // ── Experience Details ────────────────────────────────────────────────────
-  const experiences = await client.fetch<
-    { slug: string; shortId?: string; _updatedAt?: string }[]
-  >(
+  const experiences = await fetchList<
+    { slug: string; shortId?: string; _updatedAt?: string }>(
     `*[_type == "experience"] { "slug": slug.current, shortId, _updatedAt }`,
     {},
     { next: { revalidate: 3600 } },

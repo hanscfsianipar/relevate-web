@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
+import { siteConfig } from "@/lib/site-config";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.hanscfs.com";
+const baseUrl = siteConfig.siteUrl;
 
 export async function GET() {
   const pages = [
