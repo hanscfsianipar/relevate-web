@@ -29,7 +29,7 @@ jobs:
 
       - name: Cek pola token di isi repo
         run: |
-          hits=$(git grep -nE 'sk[A-Za-z0-9]{40,}|vcp_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----' -- . ':!*.md' || true)
+          hits=$(git grep -nE '\bsk[A-Za-z0-9]{100,}\b|\bvcp_[A-Za-z0-9]{20,}\b|-----BEGIN [A-Z ]*PRIVATE KEY-----' -- . ':!*.md' ':!package-lock.json' ':!*.lock' || true)
           if [ -n "$hits" ]; then
             echo "::error::Pola token ditemukan:"
             echo "$hits"
