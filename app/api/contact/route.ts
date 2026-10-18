@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       const resend = new Resend(process.env.RESEND_API_KEY);
 
       await resend.emails.send({
-        from: "Website Contact <onboarding@resend.dev>",
+        from: process.env.RESEND_FROM ?? "Relevate <onboarding@resend.dev>",
         to: siteConfig.contactEmail,
         subject: `Pesan baru dari ${data.name}`,
         html: `
