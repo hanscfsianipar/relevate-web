@@ -198,3 +198,56 @@ Do not push directly to `main`.
 - Placeholder assets: `app/icon.png`, `app/apple-icon.png`, `app/favicon.ico` are letter R placeholders.
 - Social links in `lib/site-config.ts` are empty, so the social icons do not render.
 - `CONTACT_EMAIL` currently points to a personal Gmail until the `hello@relevate.id` mailbox exists.
+
+---
+
+## 12. Versioning and conflict rules
+
+Git is the record of every change. Nothing is edited straight on `main`, and nothing important lives only on someone's laptop.
+
+**Before you start**
+
+1. `git checkout main && git pull origin main`
+2. `git checkout -b <type>/<short-name>`, types: `feat`, `fix`, `content`, `docs`, `chore`
+3. Check open PRs (`gh pr list`) for the same area. If someone is already editing the same page or component, coordinate first instead of racing
+
+**While working**
+
+- One branch, one purpose. If you notice a second problem, write it down and open a separate branch later
+- Commit in small steps, each message explains the why:
+
+  ```
+  feat(insights): add bilingual article template for new writers
+  fix(contact): stop form from reporting success without an email
+  content(about): rewrite hero copy in id and en
+  ```
+
+- Never `git push --force` on `main` or on a branch someone else is reviewing. If you must rewrite your own branch, use `--force-with-lease`
+- Never commit `.env`, `.next`, `node_modules`, tokens, or screenshots containing client data
+
+**Keeping up with main**
+
+- Daily, or before opening a PR: `git fetch origin && git rebase origin/main`
+- If the rebase conflicts, resolve, then `npm run build` before pushing. A conflict resolved without a build is not resolved
+- Do not merge `main` into your branch repeatedly to "fix" conflicts if a rebase is possible. Keep history readable
+
+**Merging**
+
+- Merge with **Create a merge commit**. Do not squash or rebase-merge, because the merge commit is the deploy trigger record
+- At least one other person reads the PR before merge. Branch protection is not enforced on this plan, so this is convention, and breaking it is a process bug
+- After merge, delete the branch
+
+**Where conflicts actually happen, and how to avoid them**
+
+| Work type | Collision risk | Avoid by |
+| --- | --- | --- |
+| Content in Sanity | Low, Sanity keeps per-document history | One person per document at a time. Check "History" before overwriting |
+| UI copy in `messages/*.json` | High, one shared file | Announce which namespace you take, keep edits inside that namespace |
+| Components and sections | Medium | One section per PR. If two people need the same component, the first merges, the second rebases |
+| Schemas | Low but risky | Discuss before adding fields. Schema changes affect every document |
+
+**What counts as the changelog**
+
+- Commit messages plus PR titles and bodies are the changelog. Every production deploy is tied to a commit SHA, visible in the Actions run and in the PR
+- Do not add a separate CHANGELOG.md for a marketing site. It will drift and lie
+- If a change needs explaining to a client or teammate later, put it in the PR body, not in a comment somewhere else

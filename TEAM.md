@@ -24,14 +24,27 @@ Aturan isi:
 
 Kamu butuh akses repo GitHub, bukan akun Vercel.
 
+Setup pertama kali, sekali saja:
+
 ```bash
 git clone https://github.com/hanscfsianipar/relevate-web.git
 cd relevate-web
 npm install
-npm run dev
+cp .env.example .env.local
 ```
 
-Alurnya:
+Isi `.env.local`:
+
+```
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SANITY_PROJECT_ID=pcx1y31m
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=<token Sanity milikmu sendiri>
+```
+
+Lalu `npm run dev`, buka `http://localhost:3000` dan `http://localhost:3000/studio`.
+
+Alur setiap perubahan:
 
 1. Buat branch sendiri, jangan kerja di `main`
 2. Kerjakan perubahan, lalu `npm run build` sampai lolos
@@ -47,6 +60,21 @@ Jangan disentuh:
 
 Satu PR satu tujuan. Perbaikan kecil dan fitur besar jangan dicampur dalam satu PR.
 
+## Aturan versi dan konflik
+
+Supaya semua perubahan tercatat dan tidak saling menimpa:
+
+- Mulai selalu dari `main` yang terbaru: `git checkout main && git pull origin main`, baru buat branch
+- Nama branch: `feat/...`, `fix/...`, `content/...`, `docs/...`, `chore/...`
+- Commit kecil-kecil, pesannya jelas. Contoh: `content(about): rewrite hero copy in id and en`
+- Sebelum buka PR, rapikan dengan `git fetch origin && git rebase origin/main`. Kalau ada konflik, selesaikan lalu `npm run build` lagi
+- Merge pakai **Create a merge commit**, jangan squash. Merge commit itu yang jadi catatan deploy
+- Minimal satu orang lain membaca PR sebelum merge. Ini kesepakatan, bukan otomatis, jadi tolong dijaga
+- Sebelum mulai kerja di halaman atau section tertentu, cek PR yang sedang terbuka. Kalau ada yang mengerjakan area yang sama, bicarakan dulu
+- Konflik paling sering terjadi di `messages/id.json` dan `messages/en.json` karena satu file dipakai bersama. Kalau dua orang mengubah file itu, yang kedua wajib rebase sebelum minta review
+
+Riwayat perubahan ada di commit, judul PR, dan isi PR. Setiap deploy production terikat ke satu commit SHA, jadi selalu bisa dilacak.
+
 ## Yang tidak dibagikan
 
 Dashboard Vercel, token Sanity milik Hans, isi `.env` produksi, dan akses Hostinger tetap di Hans. Dua akses di atas sudah cukup untuk semua pekerjaan UI/UX dan konten.
@@ -56,9 +84,11 @@ Dashboard Vercel, token Sanity milik Hans, isi `.env` produksi, dan akses Hostin
 Studio di browser cukup untuk mengisi konten manual. Tapi kalau agenmu harus membuat atau mengubah dokumen lewat kode atau MCP, agen itu butuh token Sanity milikmu sendiri:
 
 1. Buka `sanity.io/manage`, pilih project Relevate, tab API, bagian Tokens
-2. Add API token, nama bebas, role Editor
+2. Add API token, nama bebas, role Editor atau Developer
 3. Simpan di `.env.local` di laptopmu, jangan di repo
 4. Jangan pakai token milik orang lain, dan jangan pernah commit token
+
+Kalau Hans sudah membuatkan token untukmu, pakai token itu, dan simpan hanya di `.env.local`. Token hanya ditampilkan sekali saat dibuat, jadi kalau hilang, minta Hans mencabut lalu buat yang baru.
 
 Env minimal untuk kerja lokal:
 
