@@ -2,39 +2,47 @@ import { NextResponse } from "next/server";
 import { fetchList } from "@/lib/sanity/client";
 import { buildCanonicalSegment } from "@/lib/shortId";
 import { siteConfig } from "@/lib/site-config";
+import { getPathname } from "@/i18n/navigation";
+import { routing, type Locale } from "@/i18n/routing";
 
 const baseUrl = siteConfig.siteUrl;
-const locales = ["id", "en"];
 
 function fmt(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
 
-function url(path: string, locale: string) {
-  return `${baseUrl}/${locale}${path}`;
+type Href = Parameters<typeof getPathname>[0]["href"];
+
+/**
+ * Bangun URL sitemap lewat i18n routing, supaya locale non-default
+ * memakai path yang benar (/id/tentang, bukan /id/about yang redirect).
+ */
+function pageUrl(href: Href, locale: Locale) {
+  return `${baseUrl}${getPathname({ locale, href })}`;
 }
 
 export async function GET() {
   const entries: string[] = [];
 
   // ── Static pages ─────────────────────────────────────────────────────────
-  const staticPages = [
+  const staticPages: Href[] = [
     "/",
     "/about",
     "/experience",
     "/services",
-    "/services/seo-consulting",
-    "/services/marketing-analytics",
+    { pathname: "/services/[slug]", params: { slug: "seo-consulting" } },
+    { pathname: "/services/[slug]", params: { slug: "marketing-analytics" } },
     "/case-studies",
     "/insights",
     "/contact",
+    "/speaking",
   ];
 
   const now = fmt(new Date());
 
-  for (const locale of locales) {
-    for (const path of staticPages) {
-      entries.push(`  <url>\n    <loc>${url(path, locale)}</loc>\n    <lastmod>${now}</lastmod>\n  </url>`);
+  for (const locale of routing.locales) {
+    for (const href of staticPages) {
+      entries.push(`  <url>\n    <loc>${pageUrl(href, locale)}</loc>\n    <lastmod>${now}</lastmod>\n  </url>`);
     }
   }
 
@@ -46,13 +54,13 @@ export async function GET() {
     { next: { revalidate: 3600 } },
   );
 
-  for (const locale of locales) {
+  for (const locale of routing.locales) {
     for (const item of caseStudies) {
       const slug = item.shortId
         ? buildCanonicalSegment(item.shortId, item.slug)
         : item.slug;
       entries.push(
-        `  <url>\n    <loc>${url(`/case-studies/${slug}`, locale)}</loc>\n    <lastmod>${item._updatedAt ? fmt(new Date(item._updatedAt)) : now}</lastmod>\n  </url>`,
+        `  <url>\n    <loc>${pageUrl({ pathname: "/case-studies/[slug]", params: { slug } }, locale)}</loc>\n    <lastmod>${item._updatedAt ? fmt(new Date(item._updatedAt)) : now}</lastmod>\n  </url>`,
       );
     }
   }
@@ -65,13 +73,13 @@ export async function GET() {
     { next: { revalidate: 3600 } },
   );
 
-  for (const locale of locales) {
+  for (const locale of routing.locales) {
     for (const item of experiences) {
       const slug = item.shortId
         ? buildCanonicalSegment(item.shortId, item.slug)
         : item.slug;
       entries.push(
-        `  <url>\n    <loc>${url(`/experience/${slug}`, locale)}</loc>\n    <lastmod>${item._updatedAt ? fmt(new Date(item._updatedAt)) : now}</lastmod>\n  </url>`,
+        `  <url>\n    <loc>${pageUrl({ pathname: "/experience/[slug]", params: { slug } }, locale)}</loc>\n    <lastmod>${item._updatedAt ? fmt(new Date(item._updatedAt)) : now}</lastmod>\n  </url>`,
       );
     }
   }
