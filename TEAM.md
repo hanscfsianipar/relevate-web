@@ -1,51 +1,55 @@
 # Untuk tim Relevate
 
-Dokumen ini untuk dibagikan ke orang yang membantu mengisi atau mengubah situs. Tidak perlu paham infrastruktur.
+Untuk Timothy Indarto dan Muhammad Disha. Kamu mengerjakan UI/UX sekaligus isi konten, jadi kedua jalur di bawah ini relevan.
 
-## Kalau kamu mengisi konten
+Kalau kamu memakai AI agent (Claude, Codex, Cursor), suruh agennya membaca **AGENTS.md** lebih dulu. File itu berisi aturan wajib, peta folder, perintah, dan definisi selesai. Dokumen ini untuk manusia.
 
-Kamu hanya butuh satu hal: akses Sanity.
+## Jalur 1: mengisi konten di Sanity
 
-1. Tunggu email undangan dari Sanity, lalu terima dan buat akun (boleh pakai Google)
+1. Tunggu email undangan dari Sanity, terima, lalu buat akun (boleh pakai Google)
 2. Buka `https://www.relevate.id/studio`
 3. Pilih jenis konten di sidebar kiri
 4. Setiap dokumen punya dua tab: **Bahasa Indonesia** dan **English**. Isi dua-duanya
-5. Tekan **Publish**. Situs memakai cache 60 detik, jadi perubahan muncul sekitar satu menit kemudian
+5. Tekan **Publish**. Situs memakai cache 60 detik, perubahan muncul sekitar satu menit kemudian
 
-Yang perlu diingat:
+Aturan isi:
 
-- Selalu isi versi Indonesia dan English. Jangan tinggalkan salah satu kosong
+- Selalu isi versi Indonesia dan English
 - Jangan pakai em dash. Pakai koma, titik dua, atau titik
-- Angka dan klaim harus dari data nyata. Kalau belum ada angkanya, tulis penanda yang jelas, jangan dikarang
+- Angka dan klaim harus dari data nyata. Kalau belum ada, tulis penanda seperti `[ISI: angka baseline]`, jangan dikarang
+- Setiap gambar wajib punya Alt Text dan Sumber Gambar. Tanpa itu Sanity menolak publish
 - Jangan hapus dokumen orang lain. Kalau ragu, tanya dulu
 
-Kalau tombol Publish sudah ditekan tapi halaman belum berubah setelah dua menit, hubungi Hans. Jangan publish berkali-kali.
+## Jalur 2: mengubah tampilan atau kode
 
-## Kalau kamu mengubah tampilan atau kode
+Kamu butuh akses repo GitHub, bukan akun Vercel.
 
-Kamu butuh akses ke repo GitHub, bukan ke Vercel.
+```bash
+git clone https://github.com/hanscfsianipar/relevate-web.git
+cd relevate-web
+npm install
+npm run dev
+```
 
-1. Clone repo dan buat branch sendiri
-   ```bash
-   git clone https://github.com/hanscfsianipar/relevate-web.git
-   cd relevate-web
-   npm install
-   npm run dev
-   ```
-2. Kerjakan perubahan di branch, lalu push dan buka Pull Request
-3. Otomatis muncul URL preview di komentar PR. Lihat hasilnya di situ
-4. Setelah disetujui dan di-merge, situs production ter-update sendiri dalam beberapa menit
+Alurnya:
 
-Aturan:
+1. Buat branch sendiri, jangan kerja di `main`
+2. Kerjakan perubahan, lalu `npm run build` sampai lolos
+3. Push branch, buka Pull Request
+4. URL preview muncul otomatis di komentar PR. Cek versi `/id/...` dan `/en/...` di situ
+5. Setelah di-merge, production ter-update sendiri lewat GitHub Actions
 
-- Jangan mengubah isi environment variables, `vercel.json`, atau file di folder `.github`
-- Jangan commit `.env` atau token apa pun
-- Satu PR satu tujuan. Perbaikan kecil dan fitur besar jangan dicampur
-- Copy di `messages/id.json` dan `messages/en.json` harus selalu sepasang
+Jangan disentuh:
+
+- Environment variables, `vercel.json`, folder `.github`
+- File `.env` dan token apa pun
+- Slug dan shortId dokumen yang sudah publish, karena itu jadi URL permanen
+
+Satu PR satu tujuan. Perbaikan kecil dan fitur besar jangan dicampur dalam satu PR.
 
 ## Yang tidak dibagikan
 
-Dashboard Vercel, token Sanity, isi `.env`, dan akses Hostinger tetap di Hans. Semua kebutuhan tim sudah tercakup oleh dua akses di atas.
+Dashboard Vercel, token Sanity, isi `.env`, dan akses Hostinger tetap di Hans. Dua akses di atas sudah cukup untuk semua pekerjaan UI/UX dan konten.
 
 ## Kontak
 

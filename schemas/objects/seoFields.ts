@@ -41,6 +41,29 @@ export const seoFields = defineType({
       type: 'image',
       description: 'Recommended: 1200x630px. Used for both ID and EN.',
       options: { hotspot: true },
+      validation: Rule =>
+        Rule.custom((value, ctx) => {
+          if (!value) return true
+          const doc = ctx.document as { ogImageSourceName?: string } | undefined
+          if (!doc?.ogImageSourceName?.trim()) {
+            return 'Isi Sumber gambar OG di bawah. Setiap gambar wajib punya sumber.'
+          }
+          return true
+        }),
+    }),
+    defineField({
+      name: 'ogImageSourceName',
+      title: 'Sumber gambar OG (nama)',
+      type: 'string',
+      description:
+        'Wajib kalau OG Image diisi. Contoh: Unsplash, Pexels, dokumentasi klien, foto sendiri.',
+    }),
+    defineField({
+      name: 'ogImageSourceUrl',
+      title: 'Sumber gambar OG (URL)',
+      type: 'url',
+      description:
+        'Link ke halaman sumber atau lisensi. Untuk foto sendiri, isi URL halaman yang memakai foto itu.',
     }),
     defineField({
       name: 'noIndex',

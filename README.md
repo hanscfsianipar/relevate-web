@@ -4,6 +4,12 @@ Website Relevate. Infrastruktur disalin dari hanscfs.com: Next.js 16 + Sanity CM
 
 Dokumen ini ditulis supaya orang baru bisa mengurus situs ini tanpa mempelajari infrastrukturnya dari awal.
 
+## Untuk AI agent
+
+Kalau kamu memakai Claude, Codex, Cursor, atau agen lain untuk mengerjakan repo ini, suruh agennya membaca `AGENTS.md` lebih dulu. Di situ ada aturan wajib (parity dua bahasa, larangan em dash, kewajiban sumber gambar, daftar file yang tidak boleh disentuh), peta folder, perintah, alur PR, dan definisi selesai. README ini untuk manusia, AGENTS.md untuk agen.
+
+Tim yang mengerjakan saat ini: Hans, Timothy Indarto, Muhammad Disha. Ketiganya mengerjakan UI/UX sekaligus isi konten.
+
 ---
 
 ## 1. Empat bagian yang menyusun situs ini
@@ -38,6 +44,8 @@ Editor konten tidak perlu akun GitHub dan tidak perlu menyentuh kode. Semua isi 
 3. Ubah teks. Setiap dokumen punya dua tab bahasa: **Bahasa Indonesia** dan **English**.
 4. Tekan **Publish**. Situs memakai cache 60 detik, jadi perubahan muncul paling lama sekitar satu menit.
 5. Kalau ingin langsung segar, buka dokumen, klik menu tiga titik, pilih **Revalidate site**.
+
+Untuk gambar: setiap gambar wajib punya Alt Text, Sumber Gambar (nama), dan kalau ada, URL sumbernya. Tanpa itu, Sanity menolak publish. Ini disengaja supaya tidak ada gambar tanpa jejak asal.
 
 Aturan isi yang wajib diikuti:
 

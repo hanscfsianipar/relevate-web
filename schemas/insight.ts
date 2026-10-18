@@ -62,6 +62,45 @@ export const insight = defineType({
       type: 'image',
       group: 'settings',
       options: { hotspot: true },
+      description: 'Rasio 16:9, minimal 1200x675. Wajib isi alt text dan sumber di bawah.',
+      validation: Rule =>
+        Rule.custom((value, ctx) => {
+          if (!value) return true
+          const doc = ctx.document as
+            | { imageSourceName?: string; imageAlt?: string }
+            | undefined
+          if (!doc?.imageSourceName?.trim()) {
+            return 'Setiap gambar wajib punya sumber. Isi "Sumber Gambar (nama)" di bawah.'
+          }
+          if (!doc?.imageAlt?.trim()) {
+            return 'Setiap gambar wajib punya alt text. Isi "Alt Text" di bawah.'
+          }
+          return true
+        }),
+    }),
+    defineField({
+      name: 'imageAlt',
+      title: 'Alt Text',
+      type: 'string',
+      group: 'settings',
+      description:
+        'Deskripsi gambar dalam bahasa Indonesia, 5 sampai 15 kata. Dibaca screen reader dan mesin pencari.',
+    }),
+    defineField({
+      name: 'imageSourceName',
+      title: 'Sumber Gambar (nama)',
+      type: 'string',
+      group: 'settings',
+      description:
+        'Wajib. Contoh: Unsplash, Pexels, dokumentasi klien, foto sendiri, tangkapan layar produk.',
+    }),
+    defineField({
+      name: 'imageSourceUrl',
+      title: 'Sumber Gambar (URL)',
+      type: 'url',
+      group: 'settings',
+      description:
+        'Link ke halaman sumber atau lisensi. Untuk foto sendiri, isi URL halaman yang memakai foto itu.',
     }),
     defineField({
       name: 'readTime',
