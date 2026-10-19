@@ -3,21 +3,23 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import { Figtree, Quicksand } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { SiteNav } from "@/components/layout/site-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteConfig } from "@/lib/site-config";
 
-const inter = Inter({
+const quicksand = Quicksand({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-quicksand",
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  weight: ["600", "700", "800"],
+  variable: "--font-figtree",
   display: "swap",
 });
 
@@ -59,7 +61,7 @@ export default async function LocaleLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} className={`${inter.variable} ${bricolage.variable}`}>
+    <html lang={locale} className={`${quicksand.variable} ${figtree.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <SiteNav />

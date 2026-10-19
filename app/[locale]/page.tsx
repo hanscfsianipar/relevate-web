@@ -1,11 +1,15 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { getHreflangAlternates } from "@/lib/hreflang";
-import { HeroSection } from "@/components/sections/hero-section";
-import { ServicesSnapshot } from "@/components/sections/services-snapshot";
-import { ExpertiseSection } from "@/components/sections/expertise-section";
-import { CtaBanner } from "@/components/sections/cta-banner";
-import { CompanyLogoStrip } from "@/components/sections/company-logo-strip";
+import {
+  ApproachSection,
+  ClientMarquee,
+  CtaBand,
+  HomeHero,
+  ServicesSection,
+  TeamSection,
+  WhySection,
+} from "@/components/sections/home-sections";
 import { getHomePage } from "@/lib/sanity/queries";
 import { siteConfig } from "@/lib/site-config";
 
@@ -53,26 +57,84 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const sanity = await getHomePage();
   const c = sanity ? (locale === 'en' ? sanity.en : sanity.id) : null;
 
+  const cmsHeadline = c?.heroHeadline?.trim();
+
+  const serviceTitles = [
+    t("svc1Title"),
+    t("svc2Title"),
+    t("svc3Title"),
+    t("svc4Title"),
+  ];
+
   return (
     <>
-      <HeroSection
-        tagline={c?.heroTagline ?? t("heroTagline")}
-        headline={c?.heroHeadline ?? t("heroHeadline")}
-        subheadline={c?.heroSubheadline ?? t("heroSubheadline")}
+      <HomeHero
+        kicker={c?.heroTagline ?? t("heroKicker")}
+        pre={cmsHeadline ?? t("heroHeadlinePre")}
+        accent={cmsHeadline ? "" : t("heroHeadlineAccent")}
+        post={cmsHeadline ? "" : t("heroHeadlinePost")}
+        body={c?.heroSubheadline ?? t("heroSubheadline")}
         ctaPrimary={c?.ctaPrimary ?? t("ctaPrimary")}
         ctaSecondary={c?.ctaSecondary ?? t("ctaSecondary")}
+        indexItems={serviceTitles}
       />
-      <CompanyLogoStrip label={c?.previouslyAt ?? t("previouslyAt")} />
-      <ServicesSnapshot
-        title={c?.servicesTitle ?? t("servicesTitle")}
-        services={c?.services ?? null}
-        locale={locale}
+
+      <ClientMarquee title={t("clientsTitle")} />
+
+      <WhySection
+        kicker={t("whyKicker")}
+        title={t("whyTitle")}
+        lead={t("whyLead")}
+        items={[
+          { label: t("why1Title"), body: t("why1Body") },
+          { label: t("why2Title"), body: t("why2Body") },
+          { label: t("why3Title"), body: t("why3Body") },
+          { label: t("why4Title"), body: t("why4Body") },
+        ]}
       />
-      <ExpertiseSection title={c?.expertiseTitle ?? t("expertiseTitle")} />
-      <CtaBanner
-        headline={c?.ctaBannerHeadline ?? t("ctaBannerHeadline")}
-        cta={c?.ctaBannerCta ?? t("ctaBannerCta")}
-        href="/contact"
+
+      <ServicesSection
+        kicker={t("servicesKicker")}
+        title={t("servicesTitle")}
+        lead={t("servicesLead")}
+        items={[
+          { label: t("svc1Title"), body: t("svc1Body") },
+          { label: t("svc2Title"), body: t("svc2Body") },
+          { label: t("svc3Title"), body: t("svc3Body") },
+          { label: t("svc4Title"), body: t("svc4Body") },
+        ]}
+      />
+
+      <ApproachSection
+        kicker={t("approachKicker")}
+        title={t("approachTitle")}
+        lead={t("approachLead")}
+        steps={[
+          { label: t("step1Title"), body: t("step1Body") },
+          { label: t("step2Title"), body: t("step2Body") },
+          { label: t("step3Title"), body: t("step3Body") },
+          { label: t("step4Title"), body: t("step4Body") },
+          { label: t("step5Title"), body: t("step5Body") },
+        ]}
+        noteTitle={t("approachNoteTitle")}
+        noteBody={t("approachNoteBody")}
+      />
+
+      <TeamSection
+        kicker={t("teamKicker")}
+        title={t("teamTitle")}
+        lead={t("teamLead")}
+        members={[
+          { name: "Hans", role: t("teamRole") },
+          { name: "Disha", role: t("teamRole") },
+          { name: "Timothy", role: t("teamRole") },
+        ]}
+      />
+
+      <CtaBand
+        headline={c?.ctaBannerHeadline ?? t("ctaHeadline")}
+        body={t("ctaBody")}
+        button={t("ctaButton")}
       />
     </>
   );
