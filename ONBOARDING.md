@@ -122,3 +122,4 @@ buka PR dengan ringkasan perubahan dan screenshot sebelum dan sesudah.
 | Nama | Tanggal | PR |
 | --- | --- | --- |
 | Hans | 18 Oktober 2026 | - |
+| Disha | 19 Oktober 2026 |  |
