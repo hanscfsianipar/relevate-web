@@ -60,8 +60,34 @@ jobs:
 
       - name: Deploy preview
         id: deploy
+        # Batas sendiri, supaya kalau Vercel tetap tidak membalas, step ini
+        # gagal cepat dan job tidak menggantung sampai timeout 20 menit.
+        timeout-minutes: 8
         run: |
-          url=$(vercel deploy --prebuilt --archive=tgz)
+          # --no-wait: CLI hanya mengunggah artefak lalu langsung keluar
+          # dengan URL. Tanpa flag ini CLI menunggu status deployment dan
+          # pernah menggantung sampai job dibatalkan di menit ke-20
+          # (run 39149342543), sehingga step komentar URL tidak pernah jalan.
+          #
+          # CLI kadang tetap mencetak "Your deployment failed" walau
+          # deployment sudah terbentuk dan URL-nya hidup. Karena itu exit code
+          # dicatat, tapi URL tetap dipakai selama berhasil didapat. Pesannya
+          # tetap dimunculkan sebagai warning, tidak disembunyikan.
+          code=0
+          out=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait 2>&1) || code=$?
+          printf '%s\n' "$out"
+
+          url=$(printf '%s\n' "$out" | grep -Eo 'https://[A-Za-z0-9.-]+\.vercel\.app' | tail -1)
+
+          if [ -z "$url" ]; then
+            echo "::error::Deploy tidak mengembalikan URL preview, exit code $code"
+            exit 1
+          fi
+
+          if [ "$code" -ne 0 ]; then
+            echo "::warning::vercel deploy keluar dengan kode $code. URL preview tetap dipakai. Cek status deployment di dashboard Vercel."
+          fi
+
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Preview: $url"
 
