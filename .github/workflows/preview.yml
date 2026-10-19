@@ -60,8 +60,22 @@ jobs:
 
       - name: Deploy preview
         id: deploy
+        # Batas sendiri, supaya kalau Vercel tetap tidak membalas, step ini
+        # gagal cepat dan job tidak menggantung sampai timeout 20 menit.
+        timeout-minutes: 8
         run: |
-          url=$(vercel deploy --prebuilt --archive=tgz)
+          # --no-wait: CLI hanya mengunggah artefak lalu langsung keluar
+          # dengan URL. Tanpa flag ini CLI menunggu status deployment dan
+          # pernah menggantung sampai job dibatalkan di menit ke-20
+          # (run 39149342543), sehingga step komentar URL tidak pernah jalan.
+          url=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait \
+            | grep -Eo 'https://[^[:space:]]+' | tail -1)
+
+          if [ -z "$url" ]; then
+            echo "::error::Deploy tidak mengembalikan URL preview."
+            exit 1
+          fi
+
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Preview: $url"
 
