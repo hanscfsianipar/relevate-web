@@ -68,8 +68,19 @@ jobs:
           # dengan URL. Tanpa flag ini CLI menunggu status deployment dan
           # pernah menggantung sampai job dibatalkan di menit ke-20
           # (run 39149342543), sehingga step komentar URL tidak pernah jalan.
-          url=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait \
-            | grep -Eo 'https://[^[:space:]]+' | tail -1)
+          #
+          # Output ditangkap dulu, baru di-parse. Kalau langsung di-pipe ke
+          # grep, exit code CLI tertelan dan deployment yang gagal akan
+          # terbaca sukses.
+          out=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait 2>&1) || {
+            code=$?
+            printf '%s\n' "$out"
+            echo "::error::vercel deploy gagal, exit code $code"
+            exit "$code"
+          }
+
+          printf '%s\n' "$out"
+          url=$(printf '%s\n' "$out" | grep -Eo 'https://[^[:space:]]+' | tail -1)
 
           if [ -z "$url" ]; then
             echo "::error::Deploy tidak mengembalikan URL preview."
