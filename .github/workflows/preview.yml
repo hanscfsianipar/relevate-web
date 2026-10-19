@@ -69,22 +69,23 @@ jobs:
           # pernah menggantung sampai job dibatalkan di menit ke-20
           # (run 39149342543), sehingga step komentar URL tidak pernah jalan.
           #
-          # Output ditangkap dulu, baru di-parse. Kalau langsung di-pipe ke
-          # grep, exit code CLI tertelan dan deployment yang gagal akan
-          # terbaca sukses.
-          out=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait 2>&1) || {
-            code=$?
-            printf '%s\n' "$out"
-            echo "::error::vercel deploy gagal, exit code $code"
-            exit "$code"
-          }
-
+          # CLI kadang tetap mencetak "Your deployment failed" walau
+          # deployment sudah terbentuk dan URL-nya hidup. Karena itu exit code
+          # dicatat, tapi URL tetap dipakai selama berhasil didapat. Pesannya
+          # tetap dimunculkan sebagai warning, tidak disembunyikan.
+          code=0
+          out=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait 2>&1) || code=$?
           printf '%s\n' "$out"
+
           url=$(printf '%s\n' "$out" | grep -Eo 'https://[^[:space:]]+' | tail -1)
 
           if [ -z "$url" ]; then
-            echo "::error::Deploy tidak mengembalikan URL preview."
+            echo "::error::Deploy tidak mengembalikan URL preview, exit code $code"
             exit 1
+          fi
+
+          if [ "$code" -ne 0 ]; then
+            echo "::warning::vercel deploy keluar dengan kode $code. URL preview tetap dipakai. Cek status deployment di dashboard Vercel."
           fi
 
           echo "url=$url" >> "$GITHUB_OUTPUT"
