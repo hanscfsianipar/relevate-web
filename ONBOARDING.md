@@ -123,3 +123,4 @@ buka PR dengan ringkasan perubahan dan screenshot sebelum dan sesudah.
 | --- | --- | --- |
 | Hans | 18 Oktober 2026 | - |
 | Timothy Indarto | 19 Oktober 2026 | #5 |
+| Disha | 19 Oktober 2026 | #6 |
