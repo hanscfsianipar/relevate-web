@@ -77,7 +77,7 @@ jobs:
           out=$(vercel deploy --prebuilt --archive=tgz --yes --no-wait 2>&1) || code=$?
           printf '%s\n' "$out"
 
-          url=$(printf '%s\n' "$out" | grep -Eo 'https://[^[:space:]]+' | tail -1)
+          url=$(printf '%s\n' "$out" | grep -Eo 'https://[A-Za-z0-9.-]+\.vercel\.app' | tail -1)
 
           if [ -z "$url" ]; then
             echo "::error::Deploy tidak mengembalikan URL preview, exit code $code"
