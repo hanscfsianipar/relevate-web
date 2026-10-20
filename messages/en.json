@@ -11,7 +11,9 @@
     "home": "Home",
     "clients": "Clients",
     "portfolio": "Portfolio",
-    "news": "News"
+    "blog": "Blog",
+    "blogArticles": "Articles",
+    "blogNews": "News"
   },
   "home": {
     "heroTagline": "Marketing Analytics & SEO",

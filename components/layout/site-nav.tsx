@@ -17,7 +17,7 @@ const mainLinks = [
   { key: "services" as const, href: "/services" },
   { key: "clients" as const, href: "/#klien" },
   { key: "portfolio" as const, href: "/case-studies" },
-  { key: "news" as const, href: "/insights" },
+  { key: "blog" as const, href: "/insights" },
   { key: "about" as const, href: "/about" },
 ];
 
@@ -73,7 +73,32 @@ export function SiteNav() {
                 </ul>
               </div>
             ) : (
-              key === "clients" ? (
+              key === "blog" ? (
+                <div key={key} className="group relative">
+                  <Link
+                    href="/insights"
+                    className={cn(
+                      "flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
+                      isActive(href) ? "text-cream" : "text-cream/75 hover:text-cream"
+                    )}
+                  >
+                    {t(key)}
+                    <span className="h-1.5 w-1.5 rotate-45 border-b border-r border-current opacity-60" />
+                  </Link>
+                  <ul className="invisible absolute left-0 top-full z-50 min-w-[200px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100">
+                    {(["blogArticles", "blogNews"] as const).map((k) => (
+                      <li key={k}>
+                        <Link
+                          href="/insights"
+                          className="block px-3 py-2.5 text-[11.5px] font-bold uppercase tracking-[0.1em] text-forest transition-colors hover:bg-sand"
+                        >
+                          {t(k)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : key === "clients" ? (
                 <a
                   key={key}
                   href={`/${locale}#klien`}
@@ -138,6 +163,18 @@ export function SiteNav() {
                       className="block px-1 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground"
                     >
                       {th(k)}
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-6 border-t border-forest/10 pt-4">
+                  {(["blogArticles", "blogNews"] as const).map((k) => (
+                    <Link
+                      key={k}
+                      href="/insights"
+                      onClick={() => setOpen(false)}
+                      className="block px-1 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground"
+                    >
+                      {t(k)}
                     </Link>
                   ))}
                 </div>

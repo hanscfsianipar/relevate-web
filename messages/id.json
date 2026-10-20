@@ -11,7 +11,9 @@
     "home": "Beranda",
     "clients": "Klien",
     "portfolio": "Portofolio",
-    "news": "Berita"
+    "blog": "Blog",
+    "blogArticles": "Artikel",
+    "blogNews": "Berita"
   },
   "home": {
     "heroTagline": "Marketing Analytics & SEO",
