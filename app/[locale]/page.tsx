@@ -7,7 +7,6 @@ import {
   CtaBand,
   HomeHero,
   ServicesSection,
-  TeamSection,
   WhySection,
 } from "@/components/sections/home-sections";
 import { getHomePage } from "@/lib/sanity/queries";
@@ -118,17 +117,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         ]}
         noteTitle={t("approachNoteTitle")}
         noteBody={t("approachNoteBody")}
-      />
-
-      <TeamSection
-        kicker={t("teamKicker")}
-        title={t("teamTitle")}
-        lead={t("teamLead")}
-        members={[
-          { name: "Hans", role: t("teamRole") },
-          { name: "Disha", role: t("teamRole") },
-          { name: "Timothy", role: t("teamRole") },
-        ]}
       />
 
       <CtaBand

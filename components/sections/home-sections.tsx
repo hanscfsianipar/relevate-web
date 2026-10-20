@@ -245,41 +245,6 @@ export function ApproachSection({
   );
 }
 
-export function TeamSection({
-  kicker,
-  title,
-  lead,
-  members,
-}: {
-  kicker: string;
-  title: string;
-  lead: string;
-  members: { name: string; role: string }[];
-}) {
-  return (
-    <section id="tim" className="py-16 lg:py-24">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-14">
-        <SectionHead kicker={kicker} title={title} lead={lead} />
-        <div className="grid gap-6 sm:grid-cols-3 lg:gap-9">
-          {members.map(({ name, role }) => (
-            <div key={name}>
-              <div className="mb-4 grid aspect-square place-items-center bg-sand">
-                <span className="text-[clamp(30px,3.4vw,46px)] font-bold tracking-[-0.02em] text-forest/50">
-                  {name.charAt(0)}
-                </span>
-              </div>
-              <b className="block text-[17px] tracking-[-0.01em]">{name}</b>
-              <span className="mt-1.5 block text-[11px] font-bold uppercase tracking-[0.15em] text-sage">
-                {role}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function CtaBand({
   headline,
   body,
