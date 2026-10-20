@@ -17,6 +17,7 @@ const mainLinks = [
   { key: "services" as const, href: "/services" },
   { key: "clients" as const, href: "/#klien" },
   { key: "portfolio" as const, href: "/case-studies" },
+  { key: "news" as const, href: "/insights" },
   { key: "about" as const, href: "/about" },
 ];
 

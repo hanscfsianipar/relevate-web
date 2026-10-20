@@ -10,7 +10,8 @@
     "menu": "Menu",
     "home": "Home",
     "clients": "Clients",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "news": "News"
   },
   "home": {
     "heroTagline": "Marketing Analytics & SEO",
