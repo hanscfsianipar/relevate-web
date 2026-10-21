@@ -21,14 +21,14 @@ export function LanguageSwitcher() {
     <div className="flex items-center gap-0.5 text-sm font-medium">
       {routing.locales.map((l, i) => (
         <span key={l} className="flex items-center">
-          {i > 0 && <span className="text-border mx-0.5">/</span>}
+          {i > 0 && <span className="mx-0.5 opacity-40">/</span>}
           <button
             onClick={() => switchLocale(l)}
             className={cn(
-              "px-1 py-0.5 rounded transition-colors uppercase text-xs tracking-wider",
+              "px-1 py-0.5 uppercase text-[11px] tracking-[0.14em] transition-opacity",
               locale === l
-                ? "text-foreground font-semibold"
-                : "text-muted-foreground hover:text-foreground"
+                ? "opacity-100 font-bold"
+                : "opacity-55 hover:opacity-100"
             )}
           >
             {l}

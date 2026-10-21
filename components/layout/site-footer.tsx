@@ -1,96 +1,114 @@
-import { useTranslations } from "next-intl";
+"use client";
+
+/* eslint-disable @next/next/no-img-element */
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
-const icons = {
+const socialIcons = {
   linkedin: Linkedin,
   instagram: Instagram,
-  x: Twitter,
 };
 
 export function SiteFooter() {
   const t = useTranslations();
+  const locale = useLocale();
   const year = new Date().getFullYear();
 
+  const pages = [
+    { label: t("nav.services"), href: "/services" },
+    { label: t("nav.caseStudies"), href: "/case-studies" },
+    { label: t("nav.insights"), href: "/insights" },
+    { label: t("nav.about"), href: "/about" },
+  ];
+
   return (
-    <footer className="border-t border-border/60 bg-background">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
+    <footer className="bg-forest text-cream">
+      <div className="mx-auto max-w-[1320px] px-6 pt-16 pb-7 lg:px-14">
+        <div className="grid gap-10 border-b border-cream/15 pb-11 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link
-              href="/"
-              className="font-bricolage text-xl font-semibold tracking-tight"
-            >
-              {siteConfig.brand}
-              <span className="text-accent">{siteConfig.wordmarkSuffix}</span>
-            </Link>
-            <p className="mt-2 text-sm text-muted-foreground max-w-xs">
+            <img
+              src={siteConfig.logoLight}
+              alt={siteConfig.brand}
+              className="mb-4 h-[26px] w-auto"
+            />
+            <p className="max-w-[34ch] text-sm leading-relaxed text-cream/65">
               {t("footer.tagline")}
             </p>
           </div>
 
-          {/* Pages */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-              Pages
-            </p>
-            <nav className="flex flex-col gap-2">
-              {[
-                { label: t("nav.about"), href: "/about" },
-                { label: t("nav.experience"), href: "/experience" },
-                { label: t("nav.services"), href: "/services" },
-                { label: t("nav.caseStudies"), href: "/case-studies" },
-                { label: t("nav.insights"), href: "/insights" },
-              ].map(({ label, href }) => (
-                <Link
-                  key={href}
-                  href={href as Parameters<typeof Link>[0]["href"]}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {label}
-                </Link>
+            <p className="kicker mb-4 text-cream/50">{t("footer.navLabel")}</p>
+            <ul className="space-y-2.5">
+              {pages.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href as Parameters<typeof Link>[0]["href"]}
+                    className="text-[13.5px] text-cream/85 transition-colors hover:text-lime"
+                  >
+                    {label}
+                  </Link>
+                </li>
               ))}
-            </nav>
+            </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-              Connect
-            </p>
-            <Link
-              href="/contact"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t("nav.contact")}
-            </Link>
-            {siteConfig.socials.length > 0 && (
-              <div className="flex items-center gap-3 mt-4">
-                {siteConfig.socials.map(({ href, label, icon }) => {
-                  const Icon = icons[icon];
-                  return (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  );
-                })}
-              </div>
-            )}
+            <p className="kicker mb-4 text-cream/50">{t("nav.contact")}</p>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href={`mailto:${siteConfig.contactEmail}`}
+                  className="text-[13.5px] text-cream/85 transition-colors hover:text-lime"
+                >
+                  {siteConfig.contactEmail}
+                </a>
+              </li>
+              {siteConfig.socials.map(({ label, href }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[13.5px] text-cream/85 transition-colors hover:text-lime"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="kicker mb-4 text-cream/50">{t("footer.locationLabel")}</p>
+            <p className="text-[13.5px] text-cream/85">{locale === "en" ? siteConfig.location.en : siteConfig.location.id}</p>
+            <div className="mt-5 flex items-center gap-4">
+              {siteConfig.socials.map(({ label, href, icon }) => {
+                const Icon = socialIcons[icon as keyof typeof socialIcons];
+                if (!Icon) return null;
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="text-cream/70 transition-colors hover:text-lime"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border/40 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-muted-foreground">
-          <p>© {year} {siteConfig.brand}. {t("footer.rights")}</p>
-          <p>Built with Next.js & Sanity</p>
+        <div className="flex flex-col gap-3 pt-5 text-[11px] uppercase tracking-[0.12em] text-cream/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {siteConfig.brand}
+          </p>
+          <p>{t("footer.rights")}</p>
         </div>
       </div>
     </footer>
