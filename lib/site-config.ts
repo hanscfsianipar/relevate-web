@@ -11,7 +11,7 @@ export const siteConfig = {
 
   tagline: {
     id: "Partner SEO yang tumbuh bersama bisnis Anda",
-    en: "An SEO partner that grows with your business",
+    en: "SEO partner that grows with your business",
   },
 
   // Dipakai untuk canonical, sitemap, robots, hreflang.

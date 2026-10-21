@@ -108,7 +108,7 @@ export function SectionHead({
 }: {
   kicker: string;
   title: string;
-  lead: string;
+  lead?: string;
   dark?: boolean;
 }) {
   return (
@@ -124,7 +124,9 @@ export function SectionHead({
           {title}
         </h2>
       </div>
-      <p className={cn("max-w-[34ch] text-[15px]", dark ? "text-cream/70" : "text-sage")}>{lead}</p>
+      {lead ? (
+        <p className={cn("max-w-[34ch] text-[15px]", dark ? "text-cream/70" : "text-sage")}>{lead}</p>
+      ) : null}
     </div>
   );
 }
@@ -236,7 +238,15 @@ export function ApproachSection({
         </div>
         <div className="mt-10 grid gap-6 border-t border-forest/15 pt-6 lg:mt-14 lg:grid-cols-2 lg:gap-8">
           <p className="max-w-[30ch] text-[clamp(17px,2vw,24px)] font-semibold leading-snug tracking-[-0.01em]">
-            {noteTitle}
+            {noteTitle.split("**").map((part, i) =>
+              i % 2 === 1 ? (
+                <strong key={i} className="font-extrabold text-forest">
+                  {part}
+                </strong>
+              ) : (
+                <span key={i}>{part}</span>
+              )
+            )}
           </p>
           <p className="max-w-[42ch] self-end text-[14.5px] text-sage">{noteBody}</p>
         </div>
