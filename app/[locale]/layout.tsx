@@ -3,16 +3,16 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Figtree, Quicksand } from "next/font/google";
+import { Figtree, Plus_Jakarta_Sans } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { SiteNav } from "@/components/layout/site-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteConfig } from "@/lib/site-config";
 
-const quicksand = Quicksand({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-quicksand",
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -61,7 +61,7 @@ export default async function LocaleLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} className={`${quicksand.variable} ${figtree.variable}`}>
+    <html lang={locale} className={`${jakarta.variable} ${figtree.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <SiteNav />

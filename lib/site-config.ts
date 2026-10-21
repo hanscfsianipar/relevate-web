@@ -10,8 +10,8 @@ export const siteConfig = {
   wordmarkSuffix: ".",
 
   tagline: {
-    id: "Agensi SEO dan AI Search",
-    en: "SEO and AI Search Agency",
+    id: "Partner SEO yang tumbuh bersama bisnis Anda",
+    en: "An SEO partner that grows with your business",
   },
 
   // Dipakai untuk canonical, sitemap, robots, hreflang.

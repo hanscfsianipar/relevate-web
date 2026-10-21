@@ -28,7 +28,7 @@ export function HomeHero({
     <section className="bg-forest text-cream">
       <div className="mx-auto max-w-[1320px] px-6 pt-16 pb-12 lg:px-14 lg:pt-28 lg:pb-14">
         <span className="kicker text-cream/60">{kicker}</span>
-        <h1 className="font-display mt-6 max-w-[19ch] text-[clamp(38px,5.9vw,88px)]">
+        <h1 className="font-display mt-6 max-w-[30ch] text-[clamp(32px,4.9vw,70px)]">
           {pre}
           <span className="text-lime">{accent}</span>
           {post}
