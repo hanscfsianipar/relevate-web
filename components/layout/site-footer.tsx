@@ -31,6 +31,8 @@ export function SiteFooter() {
             <img
               src={siteConfig.logoLight}
               alt={siteConfig.brand}
+              width={1144}
+              height={233}
               className="mb-4 h-[26px] w-auto"
             />
             <p className="max-w-[34ch] text-sm leading-relaxed text-cream/65">
@@ -39,7 +41,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="kicker mb-4 text-cream/50">{t("footer.navLabel")}</p>
+            <p className="kicker mb-4 text-cream/70">{t("footer.navLabel")}</p>
             <ul className="space-y-2.5">
               {pages.map(({ label, href }) => (
                 <li key={href}>
@@ -55,7 +57,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="kicker mb-4 text-cream/50">{t("nav.contact")}</p>
+            <p className="kicker mb-4 text-cream/70">{t("nav.contact")}</p>
             <ul className="space-y-2.5">
               <li>
                 <a
@@ -81,7 +83,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <p className="kicker mb-4 text-cream/50">{t("footer.locationLabel")}</p>
+            <p className="kicker mb-4 text-cream/70">{t("footer.locationLabel")}</p>
             <p className="text-[13.5px] text-cream/85">{locale === "en" ? siteConfig.location.en : siteConfig.location.id}</p>
             <div className="mt-5 flex items-center gap-4">
               {siteConfig.socials.map(({ label, href, icon }) => {
@@ -104,7 +106,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 pt-5 text-[11px] uppercase tracking-[0.12em] text-cream/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 pt-5 text-[11px] uppercase tracking-[0.12em] text-cream/65 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {siteConfig.brand}
           </p>

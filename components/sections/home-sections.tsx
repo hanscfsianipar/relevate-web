@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Link } from "@/i18n/navigation";
-import { clientLogos } from "@/lib/clients";
+import { clientLogos, imageDims } from "@/lib/clients";
 import { cn } from "@/lib/utils";
 
 type Crumb = { label: string; body: string };
@@ -75,6 +75,7 @@ export function ClientMarquee({ title }: { title: string }) {
           key={name}
           src={src}
           alt={name}
+          {...imageDims(src)}
           loading="lazy"
           className={cn(
             "w-auto shrink-0 opacity-75 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0",
@@ -269,7 +270,7 @@ export function CtaBand({
       <div className="mx-auto grid max-w-[1320px] items-end gap-9 px-6 py-16 lg:grid-cols-[1fr_auto] lg:px-14 lg:py-24">
         <div>
           <h2 className="font-display max-w-[18ch] text-[clamp(32px,5.4vw,78px)]">{headline}</h2>
-          <p className="mt-4 max-w-[40ch] text-[15px] text-forest/80">{body}</p>
+          <p className="mt-4 max-w-[40ch] text-[15px] text-forest">{body}</p>
         </div>
         <Link
           href="/contact"

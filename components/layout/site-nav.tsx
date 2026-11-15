@@ -40,6 +40,8 @@ export function SiteNav() {
           <img
             src={siteConfig.logoLight}
             alt={siteConfig.brand}
+            width={1144}
+            height={233}
             className="h-[23px] w-auto"
           />
         </Link>
@@ -59,7 +61,7 @@ export function SiteNav() {
                   {t(key)}
                   <span className="h-1.5 w-1.5 rotate-45 border-b border-r border-current opacity-60" />
                 </Link>
-                <ul className="invisible absolute left-0 top-full z-50 min-w-[236px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100">
+                <ul className="invisible absolute left-0 top-full z-50 min-w-[236px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   {serviceKeys.map((k) => (
                     <li key={k}>
                       <Link
@@ -85,7 +87,7 @@ export function SiteNav() {
                     {t(key)}
                     <span className="h-1.5 w-1.5 rotate-45 border-b border-r border-current opacity-60" />
                   </Link>
-                  <ul className="invisible absolute left-0 top-full z-50 min-w-[200px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100">
+                  <ul className="invisible absolute left-0 top-full z-50 min-w-[200px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                     {(["blogArticles", "blogNews"] as const).map((k) => (
                       <li key={k}>
                         <Link
@@ -138,7 +140,7 @@ export function SiteNav() {
           <LanguageSwitcher />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              render={<Button variant="ghost" size="icon" aria-label={t("menu")} className="text-cream hover:bg-cream/10 hover:text-cream" />}
+              render={<Button variant="ghost" size="icon" aria-label={t("menu")} className="h-11 w-11 text-cream hover:bg-cream/10 hover:text-cream" />}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </SheetTrigger>

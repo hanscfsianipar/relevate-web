@@ -6,6 +6,12 @@
  */
 const CDN = "https://cdn.sanity.io/images/pcx1y31m/production";
 
+/** Ambil width/height asli dari nama file Sanity (…-1024x266.png). */
+export function imageDims(src: string): { width: number; height: number } | undefined {
+  const m = /-(\d+)x(\d+)\.\w+$/.exec(src);
+  return m ? { width: Number(m[1]), height: Number(m[2]) } : undefined;
+}
+
 export type ClientLogo = {
   name: string;
   src: string;
