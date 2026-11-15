@@ -61,10 +61,10 @@ export function SiteFooter() {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href={`mailto:${siteConfig.contactEmail}`}
+                  href={`mailto:${siteConfig.publicEmail}`}
                   className="text-[13.5px] text-cream/85 transition-colors hover:text-lime"
                 >
-                  {siteConfig.contactEmail}
+                  {siteConfig.publicEmail}
                 </a>
               </li>
               {siteConfig.socials.map(({ label, href }) => (

@@ -19,6 +19,13 @@ export const siteConfig = {
 
   contactEmail: process.env.CONTACT_EMAIL ?? "hello@relevate.id",
 
+  /**
+   * Alamat yang ditampilkan di footer. Sengaja konstanta, bukan env.
+   * ENV hanya tersedia di server, sehingga komponen klien akan merender nilai
+   * berbeda dan React melaporkan hydration mismatch.
+   */
+  publicEmail: "hello@relevate.id",
+
   // Wordmark untuk latar gelap. Asset di Sanity, bukan di public/.
   logoLight:
     "https://cdn.sanity.io/images/pcx1y31m/production/7a4758c169805d30c86a639558c43f109e585f4c-1144x233.png",
