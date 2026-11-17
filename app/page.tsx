@@ -1,70 +1,44 @@
-import { Bricolage_Grotesque, Inter } from "next/font/google";
-import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import { LanguagePicker } from "@/components/language-picker";
-import { getHomePage } from "@/lib/sanity/queries";
-import { siteConfig } from "@/lib/site-config";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+/**
+ * "/" tidak lagi menampilkan popup pilih bahasa.
+ * Bahasa dipilih otomatis dari preferensi browser:
+ * Indonesia -> /id, selain itu -> /en.
+ */
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
+type Pref = { base: string; q: number };
 
-export const revalidate = 3600
+function parseAcceptLanguage(header: string | null): Pref[] {
+  if (!header) return [];
+  return header
+    .split(",")
+    .map((part) => {
+      const [rawTag, ...params] = part.trim().split(";");
+      const qParam = params.find((p) => p.trim().startsWith("q="));
+      const q = qParam ? Number.parseFloat(qParam.split("=")[1]) : 1;
+      return {
+        base: rawTag.trim().toLowerCase().split("-")[0],
+        q: Number.isFinite(q) ? q : 1,
+      };
+    })
+    .filter((pref) => pref.base.length > 0)
+    .sort((a, b) => b.q - a.q);
+}
 
-export const metadata: Metadata = {
-  title: `${siteConfig.brand} - ${siteConfig.tagline.en}`,
-  description: "Pilih bahasa / Choose your language",
-};
+function pickLocale(header: string | null): "id" | "en" {
+  for (const { base, q } of parseAcceptLanguage(header)) {
+    if (q === 0) continue;
+    if (base === "id") return "id";
+    if (base === "en") return "en";
+  }
+  return "en";
+}
+
+export const dynamic = "force-dynamic";
 
 export default async function RootPage() {
-  const sanity = await getHomePage()
-  const taglineId = sanity?.id?.rootTagline ?? 'Strategi berbasis data, cerita yang bermakna.'
-  const taglineEn = sanity?.en?.rootTagline ?? 'Data-driven strategy, meaningful storytelling.'
-  const gaId = process.env.NEXT_PUBLIC_GA_ID
-
-  return (
-    <html
-      lang="und"
-      className={`${inter.variable} ${bricolage.variable}`}
-    >
-      <body className="font-sans antialiased min-h-screen bg-background text-foreground flex items-center justify-center px-4">
-        <main className="text-center max-w-sm w-full space-y-10">
-
-          <div>
-            <p className="font-display text-5xl font-bold tracking-tight">
-              {siteConfig.brand}
-              <span className="text-accent">{siteConfig.wordmarkSuffix}</span>
-            </p>
-            <p className="text-muted-foreground mt-1 text-sm">
-              {siteConfig.tagline.en}
-            </p>
-          </div>
-
-          <div className="space-y-1">
-            <p className="text-base">{taglineId}</p>
-            <p className="text-muted-foreground text-sm">
-              {taglineEn}
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest">
-              Pilih bahasa / Choose language
-            </p>
-            <LanguagePicker />
-          </div>
-
-        </main>
-      </body>
-      {gaId && <GoogleAnalytics gaId={gaId} />}
-    </html>
-  );
+  const requestHeaders = await headers();
+  const locale = pickLocale(requestHeaders.get("accept-language"));
+  redirect(`/${locale}`);
 }
