@@ -83,7 +83,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <WhySection
         kicker={t("whyKicker")}
         title={t("whyTitle")}
-        lead={t("whyLead")}
         items={[
           { label: t("why1Title"), body: t("why1Body") },
           { label: t("why2Title"), body: t("why2Body") },
@@ -95,7 +94,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <ServicesSection
         kicker={t("servicesKicker")}
         title={t("servicesTitle")}
-        lead={t("servicesLead")}
         items={[
           { label: t("svc1Title"), body: t("svc1Body") },
           { label: t("svc2Title"), body: t("svc2Body") },

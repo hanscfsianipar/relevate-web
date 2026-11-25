@@ -139,7 +139,7 @@ export function WhySection({
 }: {
   kicker: string;
   title: string;
-  lead: string;
+  lead?: string;
   items: Crumb[];
 }) {
   return (
@@ -175,7 +175,7 @@ export function ServicesSection({
 }: {
   kicker: string;
   title: string;
-  lead: string;
+  lead?: string;
   items: Crumb[];
 }) {
   return (
@@ -214,7 +214,7 @@ export function ApproachSection({
 }: {
   kicker: string;
   title: string;
-  lead: string;
+  lead?: string;
   steps: Crumb[];
   noteTitle: string;
   noteBody: string;
