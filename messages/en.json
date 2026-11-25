@@ -4,7 +4,7 @@
     "experience": "Experience",
     "services": "Services",
     "caseStudies": "Case Studies",
-    "insights": "Insights",
+    "insights": "Blog",
     "speaking": "Speaking",
     "contact": "Contact",
     "menu": "Menu",
@@ -18,7 +18,7 @@
   "home": {
     "heroTagline": "Marketing Analytics & SEO",
     "heroHeadline": "We Find What Actually Moves the Needle.",
-    "heroSubheadline": "Relevate works inside your team, not just sends a monthly report. Strategy, execution, and evaluation move together as your business grows.",
+    "heroSubheadline": "Relevate works inside your team. Strategy, execution, and evaluation move together as your business grows.",
     "ctaPrimary": "Book a free consultation",
     "ctaSecondary": "How we work",
     "servicesTitle": "Four things, taken seriously.",
@@ -35,7 +35,6 @@
     "clientsTitle": "Our clients",
     "whyKicker": "Why Relevate",
     "whyTitle": "Not an agency that lets go.",
-    "whyLead": "We measure success by the decisions you can make, not by the thickness of our report.",
     "why1Title": "One accountable person",
     "why1Body": "You know who is doing the work and who to ask.",
     "why2Title": "Reports for business owners",
@@ -45,7 +44,6 @@
     "why4Title": "Reliable and measured",
     "why4Body": "Reports arrive without chasing, and every number traces back to its source.",
     "servicesKicker": "Services",
-    "servicesLead": "Not a long list that never gets executed.",
     "svc1Title": "Technical Audit & Optimization",
     "svc1Body": "Making sure every page can be crawled, loads fast, and is understood by search engines and AI models alike.",
     "svc2Title": "E-E-A-T Content",
@@ -67,10 +65,10 @@
     "step4Body": "We review performance together with you, with accurate conclusions.",
     "step5Title": "Grow",
     "step5Body": "Once the pattern is visible, long term opportunities open up.",
-    "approachNoteTitle": "That is why we are a **companion**.",
-    "approachNoteBody": "Working with us means gaining a long term partner who is always ready to help.",
-    "ctaHeadline": "Let us start with a conversation.",
-    "ctaBody": "Tell us about your business and what is holding it back. We will show you the most sensible first step.",
+    "approachNoteTitle": "That is why we are your **companion**.",
+    "approachNoteBody": "Deciding to work with us means gaining a long term companion who is always ready to help.",
+    "ctaHeadline": "Let us start with a free consultation.",
+    "ctaBody": "Tell us about your business and what you want to achieve. Together we shape the right first step.",
     "ctaButton": "Book a free consultation"
   },
   "about": {
@@ -105,7 +103,7 @@
     "results": "The Results"
   },
   "insights": {
-    "title": "Insights | Relevate",
+    "title": "Blog | Relevate",
     "description": "Writing on SEO, analytics, and digital strategy.",
     "metaDescription": "Articles on SEO, marketing analytics, and digital strategy from the Relevate team.",
     "readMore": "Read More",
@@ -128,7 +126,7 @@
     "bookCall": "Book a Call"
   },
   "footer": {
-    "tagline": "An SEO and AI search agency that works as a companion to your business.",
+    "tagline": "An SEO and AI search agency companion for your business.",
     "rights": "All rights reserved.",
     "locationLabel": "Location",
     "follow": "Follow",
