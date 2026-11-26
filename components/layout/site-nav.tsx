@@ -21,11 +21,8 @@ const mainLinks = [
   { key: "about" as const, href: "/about" },
 ];
 
-const serviceKeys = ["svc1Title", "svc2Title", "svc3Title", "svc4Title"] as const;
-
 export function SiteNav() {
   const t = useTranslations("nav");
-  const th = useTranslations("home");
   const pathname = usePathname();
   const locale = useLocale();
   const [open, setOpen] = useState(false);
@@ -48,30 +45,16 @@ export function SiteNav() {
         <nav className="hidden lg:flex items-center gap-1">
           {mainLinks.map(({ key, href }) =>
             key === "services" ? (
-              <div key={key} className="group relative">
-                <Link
-                  href="/services"
-                  className={cn(
-                    "flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
-                    isActive(href) ? "text-cream" : "text-cream/75 hover:text-cream"
-                  )}
-                >
-                  {t(key)}
-                  <span className="h-1.5 w-1.5 rotate-45 border-b border-r border-current opacity-60" />
-                </Link>
-                <ul className="invisible absolute left-0 top-full z-50 min-w-[236px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100">
-                  {serviceKeys.map((k) => (
-                    <li key={k}>
-                      <Link
-                        href="/services"
-                        className="block px-3 py-2.5 text-[11.5px] font-bold uppercase tracking-[0.1em] text-forest transition-colors hover:bg-sand"
-                      >
-                        {th(k)}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Link
+                key={key}
+                href={href as Parameters<typeof Link>[0]["href"]}
+                className={cn(
+                  "px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
+                  isActive(href) ? "text-cream" : "text-cream/75 hover:text-cream"
+                )}
+              >
+                {t(key)}
+              </Link>
             ) : (
               key === "blog" ? (
                 <div key={key} className="group relative">
@@ -154,18 +137,6 @@ export function SiteNav() {
                     {t(key)}
                   </Link>
                 ))}
-                <div className="mt-6 border-t border-forest/10 pt-4">
-                  {serviceKeys.map((k) => (
-                    <Link
-                      key={k}
-                      href="/services"
-                      onClick={() => setOpen(false)}
-                      className="block px-1 py-2 text-[11px] font-bold uppercase tracking-[0.1em] text-muted-foreground"
-                    >
-                      {th(k)}
-                    </Link>
-                  ))}
-                </div>
                 <div className="mt-6 border-t border-forest/10 pt-4">
                   {(["blogArticles", "blogNews"] as const).map((k) => (
                     <Link
