@@ -13,13 +13,25 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site-config";
 
 const mainLinks = [
-  { key: "home" as const, href: "/" },
-  { key: "services" as const, href: "/services" },
-  { key: "clients" as const, href: "/#klien" },
-  { key: "portfolio" as const, href: "/case-studies" },
-  { key: "blog" as const, href: "/insights" },
-  { key: "about" as const, href: "/about" },
+  { key: "home" as const, href: "/", segments: [] as string[] },
+  { key: "services" as const, href: "/services", segments: ["layanan", "services"] },
+  { key: "clients" as const, href: "/#klien", segments: [] as string[] },
+  { key: "portfolio" as const, href: "/case-studies", segments: ["studi-kasus", "case-studies"] },
+  { key: "blog" as const, href: "/insights", segments: ["insight", "insights"] },
+  { key: "about" as const, href: "/about", segments: ["tentang", "about"] },
 ];
+
+/** Segmen pertama setelah locale, misal /id/layanan/seo-consulting -> "layanan". */
+function firstSegment(pathname: string): string {
+  const parts = pathname.split("/").filter(Boolean);
+  return parts.length <= 1 ? "" : parts[1];
+}
+
+function isKeyActive(pathname: string, segments: readonly string[], isHome: boolean): boolean {
+  const first = firstSegment(pathname);
+  if (isHome) return first === "";
+  return segments.includes(first);
+}
 
 export function SiteNav() {
   const t = useTranslations("nav");
@@ -27,8 +39,12 @@ export function SiteNav() {
   const locale = useLocale();
   const [open, setOpen] = useState(false);
 
-  const isActive = (href: string) =>
-    href !== "/" && pathname.includes(href.replace("/", ""));
+  const activeKey =
+    mainLinks.find(({ key, segments }) =>
+      isKeyActive(pathname, segments, key === "home")
+    )?.key ?? null;
+
+  const isContact = firstSegment(pathname) === "kontak" || firstSegment(pathname) === "contact";
 
   return (
     <header className="sticky top-0 z-50 w-full bg-forest text-cream">
@@ -37,36 +53,36 @@ export function SiteNav() {
           <img
             src={siteConfig.logoLight}
             alt={siteConfig.brand}
+            width={1144}
+            height={233}
             className="h-[23px] w-auto"
           />
         </Link>
 
         {/* Desktop menu */}
         <nav className="hidden lg:flex items-center gap-1">
-          {mainLinks.map(({ key, href }) =>
-            key === "services" ? (
-              <Link
-                key={key}
-                href={href as Parameters<typeof Link>[0]["href"]}
-                className={cn(
-                  "px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
-                  isActive(href) ? "text-cream" : "text-cream/75 hover:text-cream"
-                )}
-              >
-                {t(key)}
-              </Link>
-            ) : (
-              key === "blog" ? (
+          {mainLinks.map(({ key, href, segments }) => {
+            const active = activeKey === key;
+
+            if (key === "blog") {
+              return (
                 <div key={key} className="group relative">
                   <Link
                     href="/insights"
+                    aria-current={active ? "page" : undefined}
                     className={cn(
-                      "flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
-                      isActive(href) ? "text-cream" : "text-cream/75 hover:text-cream"
+                      "relative flex items-center gap-1.5 px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
+                      active ? "text-cream" : "text-cream/75 hover:text-cream"
                     )}
                   >
                     {t(key)}
                     <span className="h-1.5 w-1.5 rotate-45 border-b border-r border-current opacity-60" />
+                    <span
+                      className={cn(
+                        "absolute inset-x-3 bottom-0 h-[2px] bg-lime transition-opacity",
+                        active ? "opacity-100" : "opacity-0"
+                      )}
+                    />
                   </Link>
                   <ul className="invisible absolute left-0 top-full z-50 min-w-[200px] border border-forest/15 bg-cream p-2 opacity-0 shadow-xl transition-opacity group-hover:visible group-hover:opacity-100">
                     {(["blogArticles", "blogNews"] as const).map((k) => (
@@ -81,28 +97,41 @@ export function SiteNav() {
                     ))}
                   </ul>
                 </div>
-              ) : key === "clients" ? (
+              );
+            }
+
+            if (key === "clients") {
+              return (
                 <a
                   key={key}
                   href={`/${locale}#klien`}
-                  className="px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-cream/75 transition-colors hover:text-cream"
+                  className="relative px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-cream/75 transition-colors hover:text-cream"
                 >
                   {t(key)}
                 </a>
-              ) : (
-                <Link
-                  key={key}
-                  href={href as Parameters<typeof Link>[0]["href"]}
+              );
+            }
+
+            return (
+              <Link
+                key={key}
+                href={href as Parameters<typeof Link>[0]["href"]}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "relative px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
+                  active ? "text-cream" : "text-cream/75 hover:text-cream"
+                )}
+              >
+                {t(key)}
+                <span
                   className={cn(
-                    "px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
-                    isActive(href) ? "text-cream" : "text-cream/75 hover:text-cream"
+                    "absolute inset-x-3 bottom-0 h-[2px] bg-lime transition-opacity",
+                    active ? "opacity-100" : "opacity-0"
                   )}
-                >
-                  {t(key)}
-                </Link>
-              )
-            )
-          )}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right */}
@@ -110,7 +139,13 @@ export function SiteNav() {
           <LanguageSwitcher />
           <Link
             href="/contact"
-            className="bg-lime px-6 py-3.5 text-[11px] font-bold uppercase tracking-[0.16em] text-forest transition-colors hover:bg-[#8FB335]"
+            aria-current={isContact ? "page" : undefined}
+            className={cn(
+              "px-6 py-3.5 text-[11px] font-bold uppercase tracking-[0.16em] transition-colors",
+              isContact
+                ? "bg-[#8FB335] text-forest"
+                : "bg-lime text-forest hover:bg-[#8FB335]"
+            )}
           >
             {t("contact")}
           </Link>
@@ -127,16 +162,30 @@ export function SiteNav() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72 bg-cream">
               <nav className="mt-10 flex flex-col">
-                {mainLinks.map(({ key, href }) => (
-                  <Link
-                    key={key}
-                    href={href as Parameters<typeof Link>[0]["href"]}
-                    onClick={() => setOpen(false)}
-                    className="border-b border-forest/10 px-1 py-4 text-xs font-bold uppercase tracking-[0.16em] text-forest"
-                  >
-                    {t(key)}
-                  </Link>
-                ))}
+                {mainLinks.map(({ key, href }) => {
+                  const active = activeKey === key;
+                  return (
+                    <Link
+                      key={key}
+                      href={href as Parameters<typeof Link>[0]["href"]}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex items-center gap-3 border-b border-forest/10 px-1 py-4 text-xs font-bold uppercase tracking-[0.16em]",
+                        active ? "text-forest" : "text-forest/70"
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "h-3 w-[3px]",
+                          active ? "bg-lime" : "bg-transparent"
+                        )}
+                      />
+                      {t(key)}
+                    </Link>
+                  );
+                })}
+
                 <div className="mt-6 border-t border-forest/10 pt-4">
                   {(["blogArticles", "blogNews"] as const).map((k) => (
                     <Link
@@ -152,7 +201,10 @@ export function SiteNav() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-6 bg-lime px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.16em] text-forest"
+                  className={cn(
+                    "mt-6 px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.16em] text-forest",
+                    isContact ? "bg-[#8FB335]" : "bg-lime"
+                  )}
                 >
                   {t("contact")}
                 </Link>
