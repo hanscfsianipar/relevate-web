@@ -67,47 +67,33 @@ export function HomeHero({
   );
 }
 
-export function ClientGallery({
-  kicker,
-  title,
-}: {
-  kicker: string;
-  title: string;
-}) {
+export function ClientMarquee({ title }: { title: string }) {
+  const group = (
+    <div className="flex items-center gap-[clamp(48px,7vw,110px)] pr-[clamp(48px,7vw,110px)]">
+      {clientLogos.map(({ name, src, square }) => (
+        <img
+          key={name}
+          src={src}
+          alt={name}
+          loading="lazy"
+          className={cn(
+            "w-auto shrink-0 opacity-75 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0",
+            square ? "h-[clamp(44px,4.6vw,64px)]" : "h-[clamp(24px,2.5vw,34px)]"
+          )}
+        />
+      ))}
+    </div>
+  );
+
   return (
     <section id="klien" className="border-b border-forest/15 bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-14">
-        <span className="kicker text-sage">{kicker}</span>
-        <h2 className="font-display mt-4 text-[clamp(28px,4.4vw,60px)] text-forest">{title}</h2>
-
-        <div className="mt-10 grid grid-cols-2 border-l border-t border-forest/15 md:grid-cols-3">
-          {clientLogos.map(({ name, src, square }, index) => {
-            const m = /-(\d+)x(\d+)\.(?:png|webp|jpg)$/.exec(src);
-            const width = m ? Number(m[1]) : undefined;
-            const height = m ? Number(m[2]) : undefined;
-
-            return (
-              <div
-                key={name}
-                className={cn(
-                  "flex min-h-[108px] items-center justify-center border-b border-r border-forest/15 px-5 py-7 lg:min-h-[146px] lg:px-8",
-                  index === clientLogos.length - 1 && clientLogos.length % 2 === 1 ? "col-span-2 md:col-span-1" : ""
-                )}
-              >
-                <img
-                  src={src}
-                  alt={name}
-                  width={width}
-                  height={height}
-                  loading="lazy"
-                  className={cn(
-                    "w-auto max-w-full opacity-70 grayscale transition-all duration-200 hover:opacity-100 hover:grayscale-0",
-                    square ? "h-[52px] lg:h-[64px]" : "h-[24px] max-w-[76%] lg:h-[30px]"
-                  )}
-                />
-              </div>
-            );
-          })}
+        <h2 className="font-display text-[clamp(28px,4.4vw,60px)]">{title}</h2>
+      </div>
+      <div className="marquee-mask mt-8 overflow-hidden lg:mt-11">
+        <div className="marquee-track flex w-max">
+          {group}
+          <div aria-hidden="true">{group}</div>
         </div>
       </div>
     </section>

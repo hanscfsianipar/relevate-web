@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getHreflangAlternates } from "@/lib/hreflang";
 import {
   ApproachSection,
-  ClientGallery,
+  ClientMarquee,
   TestimonialsSection,
   CtaBand,
   HomeHero,
@@ -79,7 +79,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         indexItems={serviceTitles}
       />
 
-      <ClientGallery kicker={t("clientsKicker")} title={t("clientsTitle")} />
+      <ClientMarquee title={t("clientsTitle")} />
 
       <TestimonialsSection
         kicker={t("testimonialsKicker")}
