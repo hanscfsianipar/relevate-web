@@ -118,6 +118,13 @@ export function TestimonialsSection({
   lead?: string;
   items: Testimonial[];
 }) {
+  // Penanda [ISI: ...] atau [FILL: ...] berarti belum ada kutipan asli.
+  // Section tidak dirender sampai isinya diganti, supaya placeholder tidak pernah tayang.
+  const filled = items.filter(
+    (item) => !/\[(ISI|FILL):/i.test(`${item.quote} ${item.name} ${item.role} ${item.company}`)
+  );
+  if (filled.length === 0) return null;
+
   return (
     <section id="testimoni" className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-14">
@@ -128,7 +135,7 @@ export function TestimonialsSection({
         {lead ? <p className="mt-5 max-w-[46ch] text-[15px] text-sage">{lead}</p> : null}
 
         <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-3">
-          {items.map((item) => (
+          {filled.map((item) => (
             <figure key={item.name} className="border-t border-forest/15 pt-6">
               <blockquote className="text-[17px] leading-relaxed text-forest">
                 {item.quote}
