@@ -9,16 +9,17 @@ import { SiteNav } from "@/components/layout/site-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { siteConfig } from "@/lib/site-config";
 
+// Keduanya variable font. Tanpa daftar weight, Next mengambil satu berkas
+// variable, sehingga build tidak lagi gagal saat fetch font Google terpecah
+// menjadi banyak query.
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-jakarta",
   display: "swap",
 });
 
 const figtree = Figtree({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
   variable: "--font-figtree",
   display: "swap",
 });
