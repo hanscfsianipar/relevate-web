@@ -100,7 +100,63 @@ export function ClientMarquee({ title }: { title: string }) {
   );
 }
 
-export function SectionHead({
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+};
+
+export function TestimonialsSection({
+  kicker,
+  title,
+  lead,
+  items,
+}: {
+  kicker: string;
+  title: string;
+  lead?: string;
+  items: Testimonial[];
+}) {
+  // Penanda [ISI: ...] atau [FILL: ...] berarti belum ada kutipan asli.
+  // Section tidak dirender sampai isinya diganti, supaya placeholder tidak pernah tayang.
+  const filled = items.filter(
+    (item) => !/\[(ISI|FILL):/i.test(`${item.quote} ${item.name} ${item.role} ${item.company}`)
+  );
+  if (filled.length === 0) return null;
+
+  return (
+    <section id="testimoni" className="py-16 lg:py-24">
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-14">
+        <span className="kicker text-sage">{kicker}</span>
+        <h2 className="font-display mt-4 max-w-[22ch] text-[clamp(26px,3.9vw,56px)] text-forest">
+          {title}
+        </h2>
+        {lead ? <p className="mt-5 max-w-[46ch] text-[15px] text-sage">{lead}</p> : null}
+
+        <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-3">
+          {filled.map((item) => (
+            <figure key={item.name} className="border-t border-forest/15 pt-6">
+              <blockquote className="text-[17px] leading-relaxed text-forest">
+                {item.quote}
+              </blockquote>
+              <figcaption className="mt-6">
+                <span className="block text-[13px] font-bold uppercase tracking-[0.12em] text-forest">
+                  {item.name}
+                </span>
+                <span className="mt-1.5 block text-[12.5px] text-sage">
+                  {item.role}, {item.company}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SectionHead({
   kicker,
   title,
   lead,

@@ -4,6 +4,7 @@ import { getHreflangAlternates } from "@/lib/hreflang";
 import {
   ApproachSection,
   ClientMarquee,
+  TestimonialsSection,
   CtaBand,
   HomeHero,
   ServicesSection,
@@ -79,6 +80,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
 
       <ClientMarquee title={t("clientsTitle")} />
+
+      <TestimonialsSection
+        kicker={t("testimonialsKicker")}
+        title={t("testimonialsTitle")}
+        lead={t("testimonialsLead")}
+        items={[
+          { quote: t("testimonial1Quote"), name: t("testimonial1Name"), role: t("testimonial1Role"), company: t("testimonial1Company") },
+          { quote: t("testimonial2Quote"), name: t("testimonial2Name"), role: t("testimonial2Role"), company: t("testimonial2Company") },
+          { quote: t("testimonial3Quote"), name: t("testimonial3Name"), role: t("testimonial3Role"), company: t("testimonial3Company") },
+        ]}
+      />
 
       <WhySection
         kicker={t("whyKicker")}
